@@ -1,0 +1,34 @@
+>>> print("the result of" + "2" + "9" + "is", 11) 
+the result of29is 11
+
+>>> print(3 + "*" + 7 + "is equal to", 18 + 3) 
+unsupported operand type(s) for +: 'int' and 'str'
+
+>>> print(7 "+" 3)
+invalid syntax (<string>, line 1)
+
+>>> print(7 + "+" + 3) 
+unsupported operand type(s) for +: 'int' and 'str'
+
+>>> print(7, "+", 3) 
+7 + 3
+
+>>> print("7" + " + " + "3") 
+7 + 3
+
+>>> print(int(12.3))
+12
+
+>>> print(float(12)) 
+12.0
+
+>>> print(int('7') + str(12)) 
+unsupported operand type(s) for +: 'int' and 'str'
+
+>>> x = 7
+y = 4
+x = y
+y = x
+print(x, y)
+4 4
+
