@@ -30,11 +30,26 @@ integer += 3
 # 1..3 REMOVING REFERENCES
 del integer  # removes all prior references to var
 
+# 1..4 TUPLES
+a = 1, 2, "three", (4, 5.0)  # a tuple of 4 values, last value is a tuple of 2 values
+tup1 = (50,)  # This is the appropriate syntax for 1 value in the tuple
+# a[0] = 3  # this is an illegal assignment because tuples are IMMUTABLE
+
+b, c = 13, 22  # multiple initialisation using tuples
+
+b, c = c, b  # switching values
+
+# 1..4.1 OPERATIONS ON TUPLES
+a = a + tup1  # CONCATENATION
+max((1, 2, 3)), min(1, 2, 3)
+a[-1]  # last character
+a[1:3]  # returns tuple from 1 to 3
+
 # 2..0 PRINTING
 print("COMP" + str(202))  # cannot concatenate string with int
 print("You can write over multiple lines \
-       using a backlash \
-      like this")
+using a backlash \
+like this")
 print("My favourite number is", 5, "!")
 
 # 3..0 Try Catch
