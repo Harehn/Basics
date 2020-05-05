@@ -130,3 +130,19 @@ try:
 except:
     pass
 
+
+class Obj:
+    def __init__(self, x, y=2):
+        self.x = x
+        self.y = y
+
+
+class Obj2(Obj):
+    def __init__(self, x, y=2):
+        super(x, y)
+
+    def __str__(self):
+        return ""
+
+    def __hash__(self):
+        return 1
