@@ -47,8 +47,16 @@ a[1:3]  # returns tuple from 1 to 3
 
 # 1..5 LISTS
 
-# 1..6 DICTIONARIES
 
+# 1..6 DICTIONARIES
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+for key, value in thisdict.items():  # thisdict.keys(), thisdict.values()
+    pass
+mydict = thisdict.copy()
 
 # 2..0 PRINTING
 print("COMP" + str(202))  # cannot concatenate string with int
