@@ -45,6 +45,11 @@ max((1, 2, 3)), min(1, 2, 3)
 a[-1]  # last character
 a[1:3]  # returns tuple from 1 to 3
 
+# 1..5 LISTS
+
+# 1..6 DICTIONARIES
+
+
 # 2..0 PRINTING
 print("COMP" + str(202))  # cannot concatenate string with int
 print("You can write over multiple lines \
@@ -98,4 +103,21 @@ try:
     someVar = int(input())
 except (TypeError, ValueError) as e:
     print(e)
+
+# 7..0 RANDOMNESS
+import random
+random.seed(a=None)  # seeding
+random.randint(0, 1)  # Return a random integer N such that a <= N <= b.
+random.choice((1, 2, 3))  #Return a random element from the non-empty sequence seq.
+
+# 8..0 FILE IO
+try:
+    in_file = open("Filename", 'r+')
+    lines = in_file.readlines()
+    in_file.close()
+    out_file = open("Filename", 'w+')
+    out_file.write("Refer to .... for formatting rules\n")
+    out_file.close()
+except:
+    pass
 
