@@ -50,7 +50,9 @@ print("COMP" + str(202))  # cannot concatenate string with int
 print("You can write over multiple lines \
 using a backlash \
 like this")
-print("My favourite number is", 5, "!")
+print("My favourite number is", 5, "!", sep=",")  # default separator is ","
+print("llllll", end="")  # So that there is no end line character after the print
+
 
 # 3..0 Try Catch
 try:
@@ -60,7 +62,40 @@ except TypeError as te:
 
 # 4..0 FUNCTIONS
 var = "global"
-def f(arg1, arg2 = "Fixed"):  # can have arguments with fixed values
+
+
+def f(arg1, arg2="Fixed"):  # can have arguments with fixed values
     global var  # makes it so that the next calls refer to the global scope
     var = "changed"
     return arg1
+
+
+# 4..1 LAMBDAS
+f2 = lambda arg1: arg1 + 10  # arg1+10 is the output
+f3 = lambda arg1: arg1 * 2
+f4 = lambda arg1: f3(f3(arg1))
+f5 = lambda ff, arg2: ff(arg2)  # functions as variables
+
+# 5..0 LOGIC
+# 5..1 IF ELSE
+if 1 in (1, 2, 3):
+    var = 1
+var += 3 if 3 in (1, 2, 3) else 0
+var = (2, 3) if 3 in (1, 2, 3) else 0  # Workaround
+
+# 5..2 FOR LOOP
+var = 1
+for x in (1, 2, 3):
+    var += 1
+var = [x/2 for x in (1, 2, 3)]
+
+# 5..3 COMBINATION
+var = [x/2 for x in (1, 2, 3) if (x+1) in (1, 2, 3)]
+
+# 6..0 INPUT
+x = input("Please enter something")
+try:
+    someVar = int(input())
+except (TypeError, ValueError) as e:
+    print(e)
+
