@@ -46,6 +46,7 @@ a[-1]  # last character
 a[1:3]  # returns tuple from 1 to 3
 
 # 1..5 LISTS
+thislist = ["apple", "banana", "cherry"]
 
 
 # 1..6 DICTIONARIES
