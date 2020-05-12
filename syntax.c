@@ -1,36 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 1..0 FUNCTIONS
 int fact(int num){
     return num<2?1:num*fact(num-1);
 }
 
+// 2..0 OBJECTS
+struct Books {
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+} book;
+
 int main(int argc, char **argv){
-    // VARIABLES
+    // 3..0 VARIABLES
     int integer = 1;
     float real = 1.0;
     char character = 'c';
     char* string = "Hello world";
     char str[] = "";
     int arr[3] = {1,2,3};
+    struct Books b = {"Trial", "Baby", "Ice Ice", 1234};
+    printf("%d \n", b.book_id);
+    /*printf(b.title, "\n");*/
 
-    // ARITHMETIC
+    // 4..0 ARITHMETIC
     integer = ( integer + 3 ) / (2 * 3);
 
-    // PRINTING
+    // 5..0 PRINTING
     printf("Hello World \n");
 
-    // USER INPUT
+    // 6..0 USER INPUT
     printf("Enter a string \n");
     scanf("%s", str);
     printf("%s \n", str);
 
-    // CMD INPUT
+    // 7..0 CMD INPUT
     if(argc>1){
         printf(argv[1]);
     }
 
-    // LOGIC
+    // 8..0 LOGIC
     if (integer == 1){
         integer++;
     }
