@@ -117,7 +117,7 @@ except (TypeError, ValueError) as e:
 import random
 random.seed(a=None)  # seeding
 random.randint(0, 1)  # Return a random integer N such that a <= N <= b.
-random.choice((1, 2, 3))  #Return a random element from the non-empty sequence seq.
+random.choice((1, 2, 3))  # Return a random element from the non-empty sequence seq.
 
 # 8..0 FILE IO
 try:
