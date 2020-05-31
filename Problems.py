@@ -32,6 +32,29 @@ def solvegetOrderedSquares():
     print("Ordered original List: ", ll)
     print("Ordered list pf squared: ", getOrderedSquares(ll))
 
+# PROBLEM 4
+def duplicateZeros( arr):
+    i = 0
+    lastWasZero = False
+    length = len(arr)
+    for el in arr:
+        if (not lastWasZero) and el == 0:
+            for j in range((length - 2), i, -1):
+                arr[j + 1] = arr[j]
+            if i != (length-1):
+                arr[i + 1] = arr[i]
+        if el == 0:
+            lastWasZero = not lastWasZero
+        i += 1
+
+def solveduplicateZeros():
+    ll = [random.randint(0, 25) if random.randint(0, 100) < 85 else 0 for i in range(15)]
+    print(ll)
+    (duplicateZeros(ll))
+    print(ll)
+
+
 solvefindMaxConsecutiveOnes() # PROBLEM 1
 solvefindNumbersWithEvenNumberOfDigits() # PROBLEM 2
 solvegetOrderedSquares() # PROBLEM 3
+solveduplicateZeros() # PROBLEM 4
