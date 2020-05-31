@@ -15,9 +15,9 @@ class Stack:
         return str(self.arr)
 
 
-m9 = Stack(list(range(9)))
-print("The mighty nein is :", m9)
-print("The return of m9.pop() is :", m9.pop())
-print("The mighty nein is now :", m9)
-print("The return of m9.push(9) is :",m9.push(9))
-print("The mighty nein is now :",m9)
+# m9 = Stack(list(range(9)))
+# print("The mighty nein is :", m9)
+# print("The return of m9.pop() is :", m9.pop())
+# print("The mighty nein is now :", m9)
+# print("The return of m9.push(9) is :",m9.push(9))
+# print("The mighty nein is now :",m9)
