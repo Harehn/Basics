@@ -81,6 +81,7 @@ def quickSort(ll):
 
 ll = [random.randint(0, 100) for i in range(15)]
 print("unsorted", ll)
+print("python default sort", sorted(ll))
 print("selection sort", selectionSort(ll))
 print("insertion sort", insertionSort(ll))
 print("Bubble sort", bubbleSort(ll))
