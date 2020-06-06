@@ -8,13 +8,12 @@ def my_timer(orig_fun):
         t1 = time.time()
         output = orig_fun(*args, **kwargs)
         t2 = time.time()
-        print("{} ran in {} seconds".format(orig_fun.__name__, (t2 - t1)))
-        return output
+        #print("{} ran in {} seconds".format(orig_fun.__name__, (t2 - t1)))
+        return output, t2-t1
 
     return wrapper
 
 
-@my_timer
 def selectionSort(ll):
     l = ll.copy()
     toRet = []
@@ -25,7 +24,7 @@ def selectionSort(ll):
     return list(reversed(toRet))
 
 
-@my_timer
+
 def insertionSort(l):
     def insertElement(l, e):
         lll = l.copy()
@@ -43,7 +42,6 @@ def insertionSort(l):
     return toRet
 
 
-@my_timer
 def bubbleSort(ll):
     lll = ll.copy()
     length = len(lll)
@@ -54,7 +52,6 @@ def bubbleSort(ll):
     return lll
 
 
-@my_timer
 def mergeSort(lll):
     def merge(l1, l2):
         toRet = []
@@ -81,7 +78,6 @@ def mergeSort(lll):
             return c
     return helper(lll)
 
-@my_timer
 def quickSort(lll):
     def helper(ll):
         def partition(l):
@@ -99,17 +95,41 @@ def quickSort(lll):
             return toRet
     return helper(lll)
 
+#
+# ll = [random.randint(0, 100) for i in range(15000)]
+# # print("0) unsorted", ll)
+# # print("1) python default sort", sorted(ll))
+# # print("2) selection sort", selectionSort(ll))
+# # print("3) insertion sort", insertionSort(ll))
+# # print("4) Bubble sort", bubbleSort(ll))
+# # print("5) Merge sort", mergeSort(ll))
+# # print("6) Quick sort", quickSort(ll))
+# selectionSort(ll)
+# insertionSort(ll)
+# bubbleSort(ll)
+# mergeSort(ll)
+# quickSort(ll)
 
-ll = [random.randint(0, 100) for i in range(15000)]
-# print("0) unsorted", ll)
-# print("1) python default sort", sorted(ll))
-# print("2) selection sort", selectionSort(ll))
-# print("3) insertion sort", insertionSort(ll))
-# print("4) Bubble sort", bubbleSort(ll))
-# print("5) Merge sort", mergeSort(ll))
-# print("6) Quick sort", quickSort(ll))
-selectionSort(ll)
-insertionSort(ll)
-bubbleSort(ll)
-mergeSort(ll)
-quickSort(ll)
+class Sort:
+    def __init__(self):
+        self.algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort]
+        self.sortDicts = {(i+1): (fun.__name__, my_timer(fun)) for i, fun in enumerate(self.algorithms)}
+
+    def sort_all(self, num):
+        ll = [random.randint(0, 100) for i in range(num)]
+        results = {}
+        for k, (name, fun) in self.sortDicts.items():
+            r = fun(ll) if len(ll) < 50 else (None, fun(ll)[1])
+            results[k] = {
+                "name": name,
+                "time": r[1],
+                "results": r[0]
+            }
+        return results
+
+def toStr(results):
+    return "\n".join([str(k1) + ")" + "\n".join(["\t{} : {}".format(k2, vals2) for k2, vals2 in val1.items()]) for (k1, val1) in results.items()])
+
+
+
+print(toStr(Sort().sort_all(25000)))
