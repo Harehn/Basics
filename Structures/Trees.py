@@ -25,9 +25,9 @@ class tree:
         if self.right is not None:
             yield from self.right.traverse()
 
-t = tree()
-for i in range(17):
-    import random
-    t.insert(random.randint(0, 100))
-for i in t.traverse():
-    print(i, end=" ")
+# t = tree()
+# for i in range(17):
+#     import random
+#     t.insert(random.randint(0, 100))
+# for i in t.traverse():
+#     print(i, end=" ")

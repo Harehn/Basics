@@ -95,24 +95,17 @@ def quickSort(lll):
             return toRet
     return helper(lll)
 
-#
-# ll = [random.randint(0, 100) for i in range(15000)]
-# # print("0) unsorted", ll)
-# # print("1) python default sort", sorted(ll))
-# # print("2) selection sort", selectionSort(ll))
-# # print("3) insertion sort", insertionSort(ll))
-# # print("4) Bubble sort", bubbleSort(ll))
-# # print("5) Merge sort", mergeSort(ll))
-# # print("6) Quick sort", quickSort(ll))
-# selectionSort(ll)
-# insertionSort(ll)
-# bubbleSort(ll)
-# mergeSort(ll)
-# quickSort(ll)
+
+def treeSort(lll):
+    from Structures.Trees import tree
+    t = tree()
+    for el in lll:
+        t.insert(el)
+    return t.traverse()
 
 class Sort:
     def __init__(self):
-        self.algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort]
+        self.algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort, treeSort]
         self.sortDicts = {(i+1): (fun.__name__, my_timer(fun)) for i, fun in enumerate(self.algorithms)}
 
     def sort_all(self, num):
@@ -123,13 +116,14 @@ class Sort:
             results[k] = {
                 "name": name,
                 "time": r[1],
-                "results": r[0]
+                "results": list(r[0]) if r[0] else r[0]
             }
         return results
 
-def toStr(results):
-    return "\n".join([str(k1) + ")" + "\n".join(["\t{} : {}".format(k2, vals2) for k2, vals2 in val1.items()]) for (k1, val1) in results.items()])
 
+def toStr(results):
+    return "\n".join([str(k1) + ")" + "\n".join(["\t{} : {}".format(k2, vals2)
+                                                 for k2, vals2 in val1.items()]) for (k1, val1) in results.items()])
 
 
 print(toStr(Sort().sort_all(25000)))
