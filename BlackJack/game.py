@@ -8,6 +8,7 @@ class Player:
         self.cards = []
         self.game = game
         self.held = False
+        self.otherPlayer = None
 
     def hold(self):
         self.held = True
@@ -84,28 +85,30 @@ class Game:
         self.deck = Deck().shuffle()
         self.records
         self.verbose = False
+        self.printing = False
 
     def makeNewGame(self):
         return input("Continue(y/n)").lower() == "y"
 
-    def addPlayer1(self, player):
+    def setPlayer1(self, player):
         if player.__class__ == Human:
             self.verbose = True
         player.game = self
         self.player1 = player
         self.resetWinners()
 
-    def addPlayer2(self, player):
+    def setPlayer2(self, player):
         player.game = self
         self.player2 = player
         self.resetWinners()
 
     def setDefaultPlayers(self):
-        self.addPlayer1(CPU())
-        self.addPlayer2(CPU())
+        self.setPlayer1(CPU())
+        self.setPlayer2(CPU())
         self.resetWinners()
 
     def start(self):
+        self.introduce()
         self.next_move()
 
     def next_move(self):
@@ -142,8 +145,9 @@ class Game:
         self.records[playername] = self.records[playername] + 1
 
     def printWinner(self, winner):
-        print("", self.player1.currentSituation(), "\n", self.player2.currentSituation())
-        print("{} won!!".format(winner.name) if winner else "It's a draw")
+        if self.printing:
+            print("", self.player1.currentSituation(), "\n", self.player2.currentSituation())
+            print("{} won!!".format(winner.name) if winner else "It's a draw")
 
     def gameEnd(self):
         winner = self.evaluateWinner()
@@ -170,9 +174,8 @@ class Game:
     def resetWinners(self):
         p1name = self.player1.name if self.player1 else None
         p2name = self.player2.name if self.player2 else None
-        self.records = {"Draw": 0,  p1name: 0, p2name: 0}
+        self.records = {"Draw": 0, p1name: 0, p2name: 0}
 
-
-g = Game()
-g.playGames(100000)
-print(g.records)
+    def introduce(self):
+        self.player1.otherPlayer = self.player2
+        self.player2.otherPlayer = self.player1
