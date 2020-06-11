@@ -1,20 +1,20 @@
 from BlackJack.game import *
 
 
-class simpleAI(Player):
-    def __init__(self, game=None):
+class SimpleAI(Player):
+    def __init__(self, confidence=0, game=None):
         import random
         name = "simpleAI" + str(random.randint(0, 100))
         super().__init__(name, game)
         self.decision_maker = self.decision_make
         self.deck = trackingDeck()
+        self.confidence = confidence
 
     def decision_make(self):
         self.deck = trackingDeck()
         self.deck.removeCards(self.cards)
         self.deck.removeCards(self.otherPlayer.cards)
-        # print(self.deck.meanVal(), self.eval_hand())
-        if self.deck.meanVal() < (21 - self.eval_hand()):
+        if (self.deck.meanVal() - self.confidence) < (21 - self.eval_hand()):
             return self.hit
         else:
             return self.hold
