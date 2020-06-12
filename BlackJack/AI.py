@@ -2,6 +2,8 @@ from BlackJack.game import *
 
 
 class SimpleAI(Player):
+    ConfidenceMultiplier = 0.1 #So that confidence can be an integer
+
     def __init__(self, confidence=0, game=None):
         import random
         name = "simpleAI" + str(random.randint(0, 100))
@@ -14,7 +16,7 @@ class SimpleAI(Player):
         self.deck = trackingDeck()
         self.deck.removeCards(self.cards)
         self.deck.removeCards(self.otherPlayer.cards)
-        if (self.deck.meanVal() - self.confidence) < (21 - self.eval_hand()):
+        if (self.deck.meanVal() - (self.confidence*self.ConfidenceMultiplier)) < (21 - self.eval_hand()):
             return self.hit
         else:
             return self.hold

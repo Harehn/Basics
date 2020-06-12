@@ -5,10 +5,11 @@ from BlackJack.game import Game
 
 
 class Specimen():
-    ValueOfDraws = 0.5
-    NumberOfGames = 100
-    MutationChance = 0.2
-    MutationAmount = 8
+    ValueOfDraws = 0.0
+    NumberOfGames = 1000
+    MutationChance = 0.2  # percentage
+    MutationAmount = (-8, 8)
+
     def __init__(self, player):
         self.obj = player
         self.fitness = 0
@@ -25,25 +26,30 @@ class Specimen():
 
     def mutate(self):
         if random.random() < self.MutationChance:
-            self.obj.confidence += (random.random()*self.MutationAmount)
+            self.obj.confidence += random.randint(*self.MutationAmount)
 
 
 class Population():
+    PopulationSize = 100
+    StartingRange = (-200, 200)
+    CrossOverRange = 7
+
     def __init__(self):
-        self.specimens = [Specimen(SimpleAI( float("{:.2f}".format(random.random())) )) for i in range(100)]
+        self.specimens = [Specimen(SimpleAI(random.randint(*self.StartingRange))) for i in range(100)]
         self.best1 = Specimen(SimpleAI())
         self.best2 = Specimen(SimpleAI())
         self.fit = False
 
     def breed(self):
-        b1 = int(self.best1.obj.confidence*1000)
-        b2 = int(self.best2.obj.confidence*1000)
+        b1 = self.best1.obj.confidence
+        b2 = self.best2.obj.confidence
         if b1 > b2:
             b1, b2 = b2, b1
+        b1, b2 = b1 - 7, b2 + 7
         if b1 == b2:
-            b1 = b1-1
-            b2 = b2+1
-        self.specimens = [Specimen(SimpleAI(random.randrange(b1, b2)/1000)) for i in range(100)] #Crossover
+            b1 = b1 - 1
+            b2 = b2 + 1
+        self.specimens = [Specimen(SimpleAI(random.randint(b1, b2))) for i in range(100)]  # Crossover
         for s in self.specimens:
             s.mutate()
         self.fit = False
@@ -68,11 +74,10 @@ class Population():
         return str([(e.obj.name, e.fitness) for e in self.specimens])
 
 
-
-
 p = Population()
 p.fitfun()
 # print([(i.obj.name, i.fitness) for i in p.getBest()])
-for i in range(3):
+for i in range(10):
     best = p.best1
-    print([(i.obj.name, i.fitness) for i in p.nextgen()], "Best is", best)
+    best = best.obj.confidence, best.fitness
+    print("Best is", best, [(i.obj.name, i.obj.confidence, i.fitness) for i in p.nextgen()])
