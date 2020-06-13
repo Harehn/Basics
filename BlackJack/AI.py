@@ -4,9 +4,9 @@ from BlackJack.game import *
 class SimpleAI(Player):
     ConfidenceMultiplier = 0.1 #So that confidence can be an integer
 
-    def __init__(self, confidence=0, game=None):
+    def __init__(self, confidence=0, name="simpleAI", game=None):
         import random
-        name = "simpleAI" + str(random.randint(0, 100))
+        name = name + str(random.randint(0, 100))
         super().__init__(name, game)
         self.decision_maker = self.decision_make
         self.deck = trackingDeck()

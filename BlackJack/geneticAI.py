@@ -5,7 +5,7 @@ from BlackJack.game import Game
 
 
 class Specimen():
-    ValueOfDraws = 0.0
+    ValueOfDraws = 0.7
     NumberOfGames = 1000
     MutationChance = 0.2  # percentage
     MutationAmount = (-8, 8)
@@ -35,10 +35,11 @@ class Population():
     CrossOverRange = 7
 
     def __init__(self):
-        self.specimens = [Specimen(SimpleAI(random.randint(*self.StartingRange))) for i in range(100)]
+        self.specimens = [Specimen(SimpleAI(random.randint(*self.StartingRange), "Best Gen ")) for i in range(100)]
         self.best1 = Specimen(SimpleAI())
         self.best2 = Specimen(SimpleAI())
         self.fit = False
+        self.gen = 0
 
     def breed(self):
         b1 = self.best1.obj.confidence
@@ -49,7 +50,7 @@ class Population():
         if b1 == b2:
             b1 = b1 - 1
             b2 = b2 + 1
-        self.specimens = [Specimen(SimpleAI(random.randint(b1, b2))) for i in range(100)]  # Crossover
+        self.specimens = [Specimen(SimpleAI(random.randint(b1, b2), "Best Gen ")) for i in range(100)]  # Crossover
         for s in self.specimens:
             s.mutate()
         self.fit = False
@@ -80,4 +81,14 @@ p.fitfun()
 for i in range(10):
     best = p.best1
     best = best.obj.confidence, best.fitness
-    print("Best is", best, [(i.obj.name, i.obj.confidence, i.fitness) for i in p.nextgen()])
+    #print("Best is", best, [(i.obj.name, i.obj.confidence, i.fitness) for i in p.nextgen()])
+    p.nextgen()
+
+g = Game()
+g.verbose = True
+g.printing = True
+g.setPlayer1(p.best1.obj)
+g.setPlayer2(SimpleAI())
+print(g.player1, g.player2)
+g.playGames(100)
+print(g.records)
