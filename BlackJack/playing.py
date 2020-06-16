@@ -1,6 +1,6 @@
-from BlackJack.AI import SimpleAI
+from BlackJack.SimpleAI import SimpleAI
 from BlackJack.game import Game
-from BlackJack.geneticAI import Population
+from BlackJack.GeneticAlgorithm import Population
 
 from matplotlib import pyplot as plt
 

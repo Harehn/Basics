@@ -1,6 +1,19 @@
 from BlackJack.game import *
 
 
+def my_timer(orig_fun):
+    import time
+
+    def wrapper(*args, **kwargs):
+        t1 = time.time()
+        output = orig_fun(*args, **kwargs)
+        t2 = time.time()
+        #print("{} ran in {} seconds".format(orig_fun.__name__, (t2 - t1)))
+        return output
+
+    return wrapper
+
+
 class SimpleAI(Player):
     ConfidenceMultiplier = 0.1 #So that confidence can be an integer
 
