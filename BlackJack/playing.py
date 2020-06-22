@@ -1,13 +1,13 @@
-from BlackJack.SimpleAI import SimpleAI
-from BlackJack.game import Game
 from BlackJack.GeneticAlgorithm import Population
 
 from matplotlib import pyplot as plt
 
+# import time
+#
+# t1 = time.time()
 p = Population()
 p.fitfun()
 p.getBest()
-# print([(i.obj.name, i.fitness) for i in p.getBest()])
 graphs_y = []
 graphs_x = list(range(100))
 
@@ -21,11 +21,6 @@ for i in range(10):
 for i, y in enumerate(graphs_y):
     plt.plot(graphs_x, y, label=("Gen" + str(i+1)))
 
-# graphs_y = [[j + i for j in range(20)] for i in range(10)]
-# for i, y in enumerate(graphs_y):
-#     print(i)
-#     plt.plot(list(range(20)), y, label="Gen"+str(i+1))
-
 plt.xkcd()
 
 plt.legend()
@@ -33,7 +28,8 @@ plt.legend()
 plt.xlabel("Population specimens")
 plt.ylabel("% Success")
 plt.title("BlackJack AI Progression")
-
+# t2 = time.time()
+# print("The genetic algorithm took {} seconds".format(t2-t1))
 plt.show()
 
 # g = Game()
