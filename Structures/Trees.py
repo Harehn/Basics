@@ -7,7 +7,7 @@ class tree:
     def insert(self, val):
         if self.val is None:
             self.val = val
-        if self.val > val:
+        elif self.val > val:
             if self.left is None:
                 self.left = tree(val)
             else:

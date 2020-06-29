@@ -8,7 +8,7 @@ def my_timer(orig_fun):
         t1 = time.time()
         output = orig_fun(*args, **kwargs)
         t2 = time.time()
-        #print("{} ran in {} seconds".format(orig_fun.__name__, (t2 - t1)))
+        # print("{} ran in {} seconds".format(orig_fun.__name__, (t2 - t1)))
         return output, t2-t1
 
     return wrapper
@@ -126,4 +126,4 @@ def toStr(results):
                                                  for k2, vals2 in val1.items()]) for (k1, val1) in results.items()])
 
 
-print(toStr(Sort().sort_all(25000)))
+print(toStr(Sort().sort_all(25)))
