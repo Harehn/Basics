@@ -11,6 +11,7 @@ public class Syntax {
   public String s;
   public float y;
   public int[] arr;
+  public char c;
   
   public Syntax(int x, String s, float y) {
     super();
