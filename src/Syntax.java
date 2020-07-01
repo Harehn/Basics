@@ -10,6 +10,7 @@ public class Syntax {
   public int x;
   public String s;
   public float y;
+  public int[] arr;
   
   public Syntax(int x, String s, float y) {
     super();
