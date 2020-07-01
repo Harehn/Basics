@@ -103,7 +103,11 @@ for x in (1, 2, 3):
     var += 1
 var = [x/2 for x in (1, 2, 3)]
 
-# 5..3 COMBINATION
+# 5..3 While LOOP
+while False:
+    pass
+
+# 5..4 COMBINATION
 var = [x/2 for x in (1, 2, 3) if (x+1) in (1, 2, 3)]
 
 # 6..0 INPUT
