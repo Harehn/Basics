@@ -58,6 +58,8 @@ public class Syntax {
     // 3..0 LOGIC
     if(example != 0) {
       example++;
+    }else {
+    	example = 0;
     }
     
     int[] examples = {1,2,3,4};
@@ -72,6 +74,12 @@ public class Syntax {
     while(i<10) {
       i++;
     }
+    
+    for(int j: examples) {
+    	if(j%2 == 0)
+    		System.out.println("Even");
+    }
+   
     
     //4..0 PRINTING
     System.out.println("Printing");
