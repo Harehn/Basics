@@ -52,6 +52,18 @@ public class Syntax {
     Syntax syn = new Syntax(0, null, 0);
     syn.getX();
     
+    // GETTING TYPES
+    Syntax ex = new Syntax(12, "Example", 12);
+    if(ex.arr instanceof int[] || ex.getClass() == Syntax.class || Syntax.class.isInstance(ex)){
+    	//TODO
+    }
+    
+    //TYPE CASTING
+    int intfromfloat = (int) 12.9;
+    float floatfroint = (float) 12;
+    
+    
+    
    //2..1 ARITHMETIC 
     int example = (1 + 2) * 3 / 2;
     
