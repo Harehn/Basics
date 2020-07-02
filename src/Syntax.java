@@ -62,6 +62,12 @@ public class Syntax {
     int intfromfloat = (int) 12.9;
     float floatfroint = (float) 12;
     
+    // OPERATIONS ON ARRAYS
+    int[] arr={};
+    int firstElement = arr[0];
+    int lastElement = arr[arr.length - 1];
+    
+    boolean isEmpty = arr == null || arr.length == 0;
     
     
    //2..1 ARITHMETIC 
@@ -92,6 +98,13 @@ public class Syntax {
     		System.out.println("Even");
     }
    
+    
+    //Try Catch
+    try{
+    	throw new Exception("Just kidding");
+    }catch(Exception e){
+    	System.out.println(e.getMessage());
+    }
     
     //4..0 PRINTING
     System.out.println("Printing");
