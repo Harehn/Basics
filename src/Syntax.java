@@ -63,7 +63,7 @@ public class Syntax {
     float floatfroint = (float) 12;
     
     // OPERATIONS ON ARRAYS
-    int[] arr={};
+    int[] arr={1,2,3};
     int firstElement = arr[0];
     int lastElement = arr[arr.length - 1];
     
