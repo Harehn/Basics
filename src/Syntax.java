@@ -4,6 +4,12 @@ import java.io.PrintStream;
 import java.util.Random;
 import java.util.Scanner;
 
+
+
+interface MyLambda {
+    void foo();
+ }
+
 //1..0 OBJECTS
 //Everything is an object
 public class Syntax {
@@ -51,6 +57,8 @@ public class Syntax {
   public static void main(String[] args) {
     Syntax syn = new Syntax(0, null, 0);
     syn.getX();
+
+    
     
     // GETTING TYPES
     Syntax ex = new Syntax(12, "Example", 12);
@@ -134,11 +142,19 @@ public class Syntax {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    
+//    MyLambda fun = () -> System.out.println("Goodbye Cruel World");
+//    fun.foo();
   }
 
   //8..0 FUNCTION
   public static int singular(int x1) {
     return 1;
+  }
+  
+  //HIGHER ORDER FUNCTION
+  public static void doStuff(MyLambda action){
+	  action.foo();
   }
 }
 
