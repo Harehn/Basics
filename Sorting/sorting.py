@@ -103,9 +103,24 @@ def treeSort(lll):
         t.insert(el)
     return t.traverse()
 
+def countsort(lll):
+    counts = [0 for i in range(101)]
+    for num in lll:
+        counts[num] += 1
+    prevcount = 0
+    for i in range(len(counts)):
+        counts[i] += prevcount
+        prevcount = counts[i]
+    sortedarr = [0 for i in lll]
+    print(counts)
+    for num in lll:
+        sortedarr[counts[num]-1] = num
+        counts[num] -= 1
+    return sortedarr
+
 class Sort:
+    algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort, treeSort, countsort]
     def __init__(self):
-        self.algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort, treeSort]
         self.sortDicts = {(i+1): (fun.__name__, my_timer(fun)) for i, fun in enumerate(self.algorithms)}
 
     def sort_all(self, num):
