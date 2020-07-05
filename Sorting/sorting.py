@@ -118,8 +118,27 @@ def countsort(lll):
         counts[num] -= 1
     return sortedarr
 
+def gnomesort(lll):
+    sortedarr = [i for i in lll]
+    i = 0
+    reachedEnd = False
+    length = len(sortedarr)
+    while not reachedEnd:
+        if i == 0:
+            i += 1
+        if sortedarr[i] >= sortedarr[i - 1]:
+            i += 1
+        else:
+            sortedarr[i], sortedarr[i - 1] = sortedarr[i - 1], sortedarr[i]
+            i -= 1
+        if i == length:
+            reachedEnd = True
+    return sortedarr
+
+
+
 class Sort:
-    algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort, treeSort, countsort]
+    algorithms = [selectionSort, insertionSort, bubbleSort, mergeSort, quickSort, treeSort, countsort, gnomesort]
     def __init__(self):
         self.sortDicts = {(i+1): (fun.__name__, my_timer(fun)) for i, fun in enumerate(self.algorithms)}
 
