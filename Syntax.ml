@@ -1,3 +1,6 @@
+(*
+* This is a comment.
+*)
 let arithmetic = (1 * 2) + (6 / 3) -1 ;;
 let arithmetic2 = (1.0 *. 2.0) +. (6.0 /. 3.0) -. 1.0 ;;
 let variables = [("int", 2), ("float", 2.0), ("char", 'c'), ("String", "Hello world")] ;;
@@ -21,9 +24,16 @@ let obj = let ab = ref 1 in
 let obj2 = obj_maker ();;
 obj 2;;
 
+Printf.printf "Hello world" ;;
 
 type 'a tree = Empty | Node of 'a tree * 'a * 'a tree;;
 let rec mapTree(f, (t: 'a tree)) =
   match t with
   | Empty -> Empty
   | Node(l,v,r) -> Node((mapTree(f,l)), (f v), (mapTree(f, r)));;
+  
+let rec randList n = if n=0 then [] else (Random.int 100)::(randList (n-1)) ;;
+let myList = randList 15 ;;
+
+exception OutOfBounds;;
+raise OutOfBounds;;
