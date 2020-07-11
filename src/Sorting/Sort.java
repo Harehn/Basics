@@ -4,6 +4,8 @@ import java.util.Random;
 import structures.Tree;
 
 public class Sort {
+  public static int countSortMaximum = 100;
+  
   public static int[] treeSort(int[] arr) {
     Tree t = new Tree();
     for (int i:arr) {
@@ -77,7 +79,21 @@ public class Sort {
     return arr;    
   }
   
-  
+  public static int[] countSort(int[] arr0) {
+    int[] counts = new int[countSortMaximum];
+    int[] sortedList =new int[arr0.length];
+    for(int i: arr0) {
+      counts[i]++;
+    }
+    for(int i = 1; i< counts.length; i++) {
+      counts[i]+=counts[i-1];
+    }
+    for(int i:arr0) {
+      sortedList[counts[i]-1] = i;
+      counts[i]--;
+    }
+    return sortedList;
+  }
   
   public static int[] makeList(int n) {
     Random myRandom=new Random();
