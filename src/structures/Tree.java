@@ -18,7 +18,6 @@ public class Tree {
       this.value = Integer.valueOf(newVal);
       return;
     }
-    
     if(newVal < value.intValue()) {
       this.initialiseLeft(); //Makes sure it's not null
       this.left.insertInOrder(newVal);
