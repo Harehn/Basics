@@ -143,8 +143,8 @@ public class Syntax {
       e.printStackTrace();
     }
     
-//    MyLambda fun = () -> System.out.println("Goodbye Cruel World");
-//    fun.foo();
+    MyLambda fun = () -> System.out.println("Goodbye Cruel World");
+    fun.foo();
   }
 
   //8..0 FUNCTION
