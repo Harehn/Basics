@@ -33,7 +33,7 @@ public class Sort {
     return arr;
   }
   
-  public static int[] selectionSort(int[] arr0) {
+   public static int[] selectionSort(int[] arr0) {
     int[] arr = cloneList(arr0);
     for(int i = 0; i < arr.length - 1; i++) {
       int min = arr[i];
@@ -50,6 +50,34 @@ public class Sort {
     }
     return arr;
   }
+   
+  public static int[] insertionSort(int[] arr0) {
+    int[] arr = new int[arr0.length];
+    int length = -1;
+    for(int newVal : arr0) {
+      length++;
+      boolean inserted = false;
+      
+      //insert in arr
+      for(int j = 0; j < length; j++) {
+        if(newVal < arr[j]) {
+          for(int shift = length; shift > j;shift--) {
+            arr[shift] = arr[shift -1]; 
+          }
+          arr[j] = newVal;
+          inserted = true;
+          break;
+        }
+      }
+      
+      if(! inserted) {
+        arr[length] = newVal;
+      }
+    }
+    return arr;    
+  }
+  
+  
   
   public static int[] makeList(int n) {
     Random myRandom=new Random();
