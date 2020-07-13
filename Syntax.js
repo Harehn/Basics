@@ -84,7 +84,7 @@ try{
   console.log("This code executes regardless");
 }
 
-
+//Node.js code
 const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
@@ -93,3 +93,11 @@ readline.question(`What's your name?`, (name) => {
   console.log(`Hi ${name}!`)
   readline.close()
 })
+
+for (var i = 0; i < 5; i++) {
+  console.log(Math.random())
+}
+
+var fs = require('fs');
+var readMe = fs.readFileSync('readMe.txt', 'utf8');
+console.log(readMe);
