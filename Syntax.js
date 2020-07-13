@@ -101,3 +101,26 @@ for (var i = 0; i < 5; i++) {
 var fs = require('fs');
 var readMe = fs.readFileSync('readMe.txt', 'utf8');
 console.log(readMe);
+
+//Standalone object
+var user = {
+  name:"John",
+  email:"Doe@gmail.com",
+  getName(){
+    console.log(this.name);
+  }
+}
+console.log(user.name);
+var key = "name";
+console.log(user[key]);
+user.getName();
+class User{
+  constructor(name, email){
+    this.name = name;
+    this.email = email
+  }
+  getName(){
+    return this.name;
+  }
+}
+console.log(new User("John", "Doe@gmail.com").getName());
