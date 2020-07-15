@@ -79,6 +79,55 @@ public class Sort {
     return arr;    
   }
   
+  public static int[] quicksort(int[] arr) {
+    if(arr.length < 2) {
+      return arr;
+    }
+    int[][] arrs = partition(arr);
+    int[] lessList  = arrs[0];
+    int[] pivotList  = arrs[1];
+    int[] moreList  = arrs[2];
+    return join(new int[][] {quicksort(lessList), pivotList, quicksort(moreList)});
+  }
+  
+  public static int[][] partition(int[] arr){
+    int pivot = arr[0];
+    int morelength = 0;
+    int lesslength = 0;
+    for(int i = 1; i < arr.length; i++) {
+      if(arr[i] < pivot) {
+        lesslength++;
+      }else {
+        morelength++;
+      }
+    }
+    int[] moreList = new int[morelength];
+    int[] lessList = new int[lesslength];
+    int[] pivotList = {pivot};
+    for(int i = 1; i < arr.length; i++) {
+      if(arr[i] < pivot) {
+        lessList[lesslength -1] = arr [i];
+        lesslength--;
+      }else {
+        moreList[morelength - 1] = arr[i];
+        morelength--;
+      }
+    }
+    return new int[][]{lessList,pivotList,moreList};
+  }
+  
+  public static int[] join(int[][] arrs) {
+    int[] joinedList = new int[arrs[0].length + arrs[2].length + 1];
+    for(int i = 0;  i < arrs[0].length; i++) {
+      joinedList[i] = arrs[0][i];
+    }
+    joinedList[arrs[0].length] = arrs[1][0];
+    for(int i = 0;  i < arrs[2].length; i++) {
+      joinedList[arrs[0].length + 1 + i] = arrs[2][i];
+    }
+    return joinedList;
+  }
+  
   public static int[] countSort(int[] arr0) {
     int[] counts = new int[countSortMaximum];
     int[] sortedList =new int[arr0.length];
