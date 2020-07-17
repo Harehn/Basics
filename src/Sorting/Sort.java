@@ -1,5 +1,6 @@
 package Sorting;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import structures.Tree;
 
@@ -127,6 +128,53 @@ public class Sort {
     }
     return joinedList;
   }
+  
+  public static int[] mergeSort(int[] arr) {
+    if(arr.length < 2) {
+      return arr;
+    }
+    int[][] arrs = split(arr);
+    int[] list1 = arrs[0];
+    int[] list2 = arrs[1];
+    return mergejoin(mergeSort(list1), mergeSort(list2));
+    
+  }
+  public static int[][] split(int[] arr){
+    int length1 = arr.length/2;
+    int length2 = arr.length -length1;
+    int[] list1 = new int[length1];
+    int[] list2 = new int[length2];
+    
+    for(int i = 0; i < length1; i++) {
+      list1[i] = arr[i];
+    }
+    for(int i = 0; i < length2; i++) {
+      list2[i] = arr[length1 + i];
+    }
+    return new int [][] {list1,list2};
+  }
+  
+  public static int[] mergejoin(int[] list1,int[] list2){
+    int[] result = new int[list1.length + list2.length];
+    int length1 = list1.length;
+    int length2 = list2.length;
+    for(int i = 0; i < result.length; i++) {
+      // Get current
+      int list1val = length1<=0 ? Integer.MAX_VALUE : list1[list1.length -length1];
+      int list2val = length2<=0 ? Integer.MAX_VALUE : list2[list2.length -length2];
+      
+      // Compare and set
+      if(list1val < list2val) {
+        result[i] = list1val;
+        length1--;
+      }else {
+        result[i] = list2val;
+        length2--;
+      }
+    }
+    return result;
+  }
+  
   
   public static int[] countSort(int[] arr0) {
     int[] counts = new int[countSortMaximum];

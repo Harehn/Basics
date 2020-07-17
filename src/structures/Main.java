@@ -18,7 +18,7 @@ public class Main {
 //		int[] sortedList = Sort.treeSort(Sort.makeList(20));
 //		System.out.println(Arrays.toString(sortedList));
 	    
-		sortedList =Sort.quicksort(unsortedList);
+		sortedList =Sort.mergeSort(unsortedList);
 //		sortedList = Sort.join(new int[][]{unsortedList,{1223}, unsortedList});
 		
 		partitionedList = Sort.partition(unsortedList);
