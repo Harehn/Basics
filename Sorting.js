@@ -10,7 +10,7 @@ function bubbleSort(arr0){
   var arr = [...arr0]
   for(var i = 0; i < arr.length; i++){
     for(var j = 0; j < arr.length; j++){
-      if(arr[i] > arr[j]){
+      if(arr[i] < arr[j]){
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -21,5 +21,5 @@ function bubbleSort(arr0){
 }
 
 arr = makeList(12)
-console.log(bubbleSort(arr));
 console.log(arr)
+console.log(bubbleSort(arr));
