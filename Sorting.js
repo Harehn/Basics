@@ -7,7 +7,7 @@ function makeList(n){
 }
 
 function bubbleSort(arr0){
-  var arr = [...arr0]
+  var arr = [...arr0];
   for(var i = 0; i < arr.length; i++){
     for(var j = 0; j < arr.length; j++){
       if(arr[i] < arr[j]){
@@ -20,6 +20,29 @@ function bubbleSort(arr0){
   return arr;
 }
 
+function getSmallest(array){
+  smallest = array.reduce((curr_smallest, num) =>
+                curr_smallest < num ? curr_smallest:num);
+  return smallest;
+}
+
+function selectionSort(arr0){
+  function getSmallest(array){
+    smallest = array.reduce((curr_smallest, num) =>
+                  curr_smallest < num ? curr_smallest:num);
+    arr.splice(arr.indexOf(smallest),1);
+    return smallest;
+  }
+  var arr = [...arr0];
+  var sortedarr = [];
+  for(var i = 0; i < arr0.length; i++){
+    sortedarr.push(getSmallest(arr));
+  }
+  return sortedarr;
+}
+
 arr = makeList(12)
 console.log(arr)
 console.log(bubbleSort(arr));
+console.log(selectionSort(arr));
+console.log(arr)
