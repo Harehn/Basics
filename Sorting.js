@@ -41,8 +41,30 @@ function selectionSort(arr0){
   return sortedarr;
 }
 
+function insertionSort(arr){
+  var sortedarr = [];
+  function insert(arr, element){
+    var added = false;
+    for(var i = 0; i < arr.length; i++){
+      if(arr[i] >= element ){
+        arr.splice(i, 0, element);
+        added = true;
+        break;
+      }
+    }
+    if(!added){
+      arr.splice(arr.length, 0, element);
+    }
+  }
+  for(var i = 0; i < arr.length; i++){
+    insert(sortedarr, arr[i]);
+  }
+  return sortedarr;
+}
+
 arr = makeList(12)
 console.log(arr)
 console.log(bubbleSort(arr));
 console.log(selectionSort(arr));
 console.log(arr)
+console.log(insertionSort(arr));
