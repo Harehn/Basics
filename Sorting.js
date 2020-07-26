@@ -20,12 +20,6 @@ function bubbleSort(arr0){
   return arr;
 }
 
-function getSmallest(array){
-  smallest = array.reduce((curr_smallest, num) =>
-                curr_smallest < num ? curr_smallest:num);
-  return smallest;
-}
-
 function selectionSort(arr0){
   function getSmallest(array){
     smallest = array.reduce((curr_smallest, num) =>
@@ -62,9 +56,63 @@ function insertionSort(arr){
   return sortedarr;
 }
 
-arr = makeList(12)
-console.log(arr)
-console.log(bubbleSort(arr));
-console.log(selectionSort(arr));
-console.log(arr)
-console.log(insertionSort(arr));
+function countsort(arr){
+  var counts = [];
+  for(var i = 0; i < 100; i++){counts.push(0)}
+  var sortedarr = [];
+  for(var i = 0; i < arr.length; i++){sortedarr.push(0)}
+  for(var val of arr){
+    counts[val]++;
+  }
+  for(var i = 1; i < counts.length; i++){
+    counts[i] += counts[i - 1]
+  }
+  for(var val of arr){
+    var index = counts[val];
+    counts[val]--;
+    sortedarr[index] = val;
+  }
+
+  return sortedarr;
+}
+
+function mergesort(arr){
+  function breakarr(arr){
+    return [arr.slice(0, arr.length/2), arr.slice(arr.length/2, arr.length)];
+  }
+  function join(arr1, arr2){
+    if(arr1.length == 0){
+      return arr2;
+    }
+    if(arr2.length == 0){
+      return arr1;
+    }
+    if(arr1[0] < arr2[0]){
+      return [arr1[0], ...(join(arr1.slice(1, arr1.length), arr2))];
+    }else{
+      return [arr2[0], ...(join(arr1, arr2.slice(1, arr2.length)))];
+    }
+  }
+  if(arr.length < 2){
+    return arr;
+  } else{
+    [list1, list2] = breakarr(arr);
+    console.log(list1, list2);
+    return join(mergesort(list1), (list2));
+  }
+
+
+}
+
+arr = makeList(12);
+arr2 = makeList(12);
+// console.log("bubblesort", bubbleSort(arr));
+// console.log("selectionSort", selectionSort(arr));
+// console.log("insertionSort", insertionSort(arr));
+console.log("Countsort", countsort(arr));
+console.log("mergesort", mergesort(arr));
+// console.log("Original array", arr);
+// console.log("Second array", arr2);
+// console.log("Joined", join(arr, arr2))
+// console.log("Breaking arr", breakarr(arr));
+// console.log("Original array", arr);
