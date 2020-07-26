@@ -1,14 +1,19 @@
+//Function
 function addNumbers(a, b) {
     return a + b; ;
 }
 
+// Higher Order Function
 function execute(action){
   action()
 }
+
 //COMMENT
   /*
   Comment
   */
+
+//Variables
 var integer = 12;
 var flt = 12.3;
 var a_string = "Hello";
@@ -18,7 +23,10 @@ var bool = false;
 const PI = 3.14;
 var a = 1, b = 2, c = a + b;
 var tuples_using_arrays = ["int", 12, 12.3]
+
+//Operations
 var operations = (12 + 12 -12 )/ 12 * 2
+// Type and type casting
 if (typeof a =='number'){
   console.log("a is a number");
 }
@@ -26,23 +34,25 @@ bool = Boolean(a)
 a_string = String(a)
 a = Number(a_string)
 
+// Executing higher order function
 var lambda = function(){console.log("Higher Order Functions")};
 execute(lambda);
 
+//for loop
 for (var i of arr){
   console.log(i);
 }
-
+//array loop
 var sum = 0;
 for (var i = 0; i < arr.length; i++) {
     sum += arr[i];
 }
-
+//while loop
 var i = 1;                      // initialize
 while (i < 100) {               // enters the cycle if statement is true
     i += 1;
 }
-
+//if else
 if(a_string == String(a)){
   a = Number(a_string);
 }
