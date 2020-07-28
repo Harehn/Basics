@@ -70,12 +70,33 @@ function countsort(arr){
   for(var val of arr){
     var index = counts[val];
     counts[val]--;
-    sortedarr[index] = val;
+    sortedarr[index - 1] = val;
   }
 
   return sortedarr;
 }
 
+function gnomesort(arr){
+  var index = 0;
+  let  reachedEnd = false;
+  while(! reachedEnd ){
+    if(index == 0){
+      index++;
+    }
+    if(arr[index] >= arr[index - 1]){
+      index++;
+    }else{
+      temp = arr[index];
+      arr[index] = arr[index - 1];
+      arr[index - 1] = temp;
+      index--;
+    }
+    if(index == arr.length){
+      reachedEnd = true;
+    }
+  }
+  return arr;
+}
 function mergesort(arr){
   function breakarr(arr){
     return [arr.slice(0, arr.length/2), arr.slice(arr.length/2, arr.length)];
@@ -97,19 +118,18 @@ function mergesort(arr){
     return arr;
   } else{
     [list1, list2] = breakarr(arr);
-    console.log(list1, list2);
+    //console.log(list1, list2);
     return join(mergesort(list1), (list2));
   }
-
-
 }
 
 arr = makeList(12);
 arr2 = makeList(12);
-// console.log("bubblesort", bubbleSort(arr));
-// console.log("selectionSort", selectionSort(arr));
-// console.log("insertionSort", insertionSort(arr));
+console.log("bubblesort", bubbleSort(arr));
+console.log("selectionSort", selectionSort(arr));
+console.log("insertionSort", insertionSort(arr));
 console.log("Countsort", countsort(arr));
+console.log("gnomesort", gnomesort(arr));
 console.log("mergesort", mergesort(arr));
 // console.log("Original array", arr);
 // console.log("Second array", arr2);
