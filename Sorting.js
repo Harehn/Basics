@@ -97,42 +97,49 @@ function gnomesort(arr){
   }
   return arr;
 }
+
+function quicksort(arr){
+
+}
+
 function mergesort(arr){
-  function breakarr(arr){
-    return [arr.slice(0, arr.length/2), arr.slice(arr.length/2, arr.length)];
-  }
-  function join(arr1, arr2){
-    if(arr1.length == 0){
-      return arr2;
-    }
-    if(arr2.length == 0){
-      return arr1;
-    }
-    if(arr1[0] < arr2[0]){
-      return [arr1[0], ...(join(arr1.slice(1, arr1.length), arr2))];
-    }else{
-      return [arr2[0], ...(join(arr1, arr2.slice(1, arr2.length)))];
-    }
-  }
   if(arr.length < 2){
     return arr;
   } else{
-    [list1, list2] = breakarr(arr);
-    //console.log(list1, list2);
-    return join(mergesort(list1), (list2));
+    var list1 = []
+    var list2 = []
+    for(var i = 0; i < Math.floor(arr.length/2); i++){
+      list1.push(arr[i]);
+    }
+    for(var i = Math.floor(arr.length / 2); i < arr.length; i++){
+      list2.push(arr[i]);
+    }
+    list1 = mergesort(list1)
+    list2 =  mergesort(list2)
+    var result = []
+    while(list1.length && list2.length){
+      if(list1[0] < list2[0]){
+        result.push(list1[0])
+        list1.splice(0, 1)
+      }else{
+        result.push(list2[0])
+        list2.splice(0, 1)
+      }
+    }
+    for( var v of list1 ){
+      result.push(v)
+    }
+    for( var v of list2 ){
+      result.push(v)
+    }
+    return result;
   }
 }
 
 arr = makeList(12);
-arr2 = makeList(12);
 console.log("bubblesort", bubbleSort(arr));
 console.log("selectionSort", selectionSort(arr));
 console.log("insertionSort", insertionSort(arr));
 console.log("Countsort", countsort(arr));
 console.log("gnomesort", gnomesort(arr));
 console.log("mergesort", mergesort(arr));
-// console.log("Original array", arr);
-// console.log("Second array", arr2);
-// console.log("Joined", join(arr, arr2))
-// console.log("Breaking arr", breakarr(arr));
-// console.log("Original array", arr);
