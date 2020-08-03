@@ -99,7 +99,26 @@ function gnomesort(arr){
 }
 
 function quicksort(arr){
-
+  if(arr.length < 2){
+    return arr;
+  }
+  var pivot = arr[0];
+  var less = []
+  var more = []
+  for(var i = 1; i < arr.length;i++){
+    if(arr[i] < pivot){
+      less.push(arr[i])
+    }else{
+      more.push(arr[i])
+    }
+  }
+  less = quicksort(less)
+  more = quicksort(more)
+  less.push(pivot)
+  for(var v of more){
+    less.push(v)
+  }
+  return less;
 }
 
 function mergesort(arr){
