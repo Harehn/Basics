@@ -51,6 +51,17 @@ int main(int argc, char **argv){
         printf("%d! is %d \n", i, fact(i));
     }
 
+    int counter = 10;
+    while(counter > 0){
+        counter--;
+    }
+    for (int i=0; i<10; i++){
+        if(i%2 ==0){
+
+        }
+    }
+
+
 
     return 1;
 }
