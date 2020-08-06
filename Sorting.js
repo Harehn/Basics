@@ -155,6 +155,66 @@ function mergesort(arr){
   }
 }
 
+function treesort(arr){
+  function initializeleft(node){
+    if (node.left == null){
+      node.left = {
+        value : null,
+        left  : null,
+        right : null
+    }}
+  }
+  function initializeright(node){
+    if (node.right == null){
+      node.right = {
+        value : null,
+        left  : null,
+        right : null
+    }}
+  }
+  function valueExists(node){
+    return node.value != null;
+  }
+  function insertTree(node, val){
+    if(! valueExists(node)){
+      node.value = val
+    }else if(node.value > val){
+      initializeleft(node)
+      insertTree(node.left, val)
+    }else{
+      initializeright(node)
+      insertTree(node.right, val)
+    }
+  }
+  function getTree(arr){
+    rootnode = {
+      value : null,
+      left  : null,
+      right : null
+    }
+    for(var v of arr){
+      insertTree(rootnode, v)
+    }
+    return rootnode;
+  }
+  var result = []
+  function traverse(node){
+    //left, root, right
+    if(! valueExists(node)){
+      return arr
+    }
+    initializeleft(node);
+    traverse(node.left)
+    result.push(node.value)
+    // console.log(node.value)
+    initializeright(node);
+    traverse(node.right)
+    return arr
+  }
+
+  return traverse(getTree(arr), result)
+}
+
 arr = makeList(12);
 console.log("bubblesort", bubbleSort(arr));
 console.log("selectionSort", selectionSort(arr));
@@ -162,3 +222,5 @@ console.log("insertionSort", insertionSort(arr));
 console.log("Countsort", countsort(arr));
 console.log("gnomesort", gnomesort(arr));
 console.log("mergesort", mergesort(arr));
+console.log("quicksort", quicksort(arr));
+console.log("treesort", treesort(arr));
