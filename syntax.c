@@ -66,14 +66,15 @@ int main(int argc, char **argv){
         }
     }
 
-
-
-
-
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand();      // Returns a pseudo-random integer between 0 and RAND_MAX.
     printf("%d", r);
 
+    int extra_int = 1;
+    int* ptr = (int*) malloc(sizeof(int));
+    printf("\n%p", ptr);
+    free(ptr);
+    printf("\n%p", ptr);
 
     return 1;
 }
