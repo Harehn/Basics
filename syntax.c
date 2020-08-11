@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <time.h>
+#include <stdlib.h>
+
 // 1..0 FUNCTIONS
 int fact(int num){
     return num<2?1:num*fact(num-1);
@@ -24,6 +27,8 @@ int main(int argc, char **argv){
     int arr[3] = {1,2,3};
     struct Books b = {"Trial", "Baby", "Ice Ice", 1234};
     printf("%d \n", b.book_id);
+    float cast1 = (float) integer;
+    int cast2 = (int) real;
     /*printf(b.title, "\n");*/
 
     // 4..0 ARITHMETIC
@@ -60,15 +65,14 @@ int main(int argc, char **argv){
 
         }
     }
-    
 
 
-    #include <time.h>
-    #include <stdlib.h>
+
+
 
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand();      // Returns a pseudo-random integer between 0 and RAND_MAX.
-
+    printf("%d", r);
 
 
     return 1;
