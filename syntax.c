@@ -9,6 +9,15 @@ int fact(int num){
     return num<2?1:num*fact(num-1);
 }
 
+void func(int nb, void (*f)(int)) {
+    int i;
+    for (i = 0; i < nb; i++) f(i);
+}
+
+void callback(int v) {
+    printf("%d\n", v);
+}
+
 // 2..0 OBJECTS
 struct Books {
    char  title[50];
@@ -75,6 +84,8 @@ int main(int argc, char **argv){
     printf("\n%p", ptr);
     free(ptr);
     printf("\n%p", ptr);
+
+    func(4, callback);
 
     return 1;
 }
