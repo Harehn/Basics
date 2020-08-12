@@ -87,5 +87,12 @@ int main(int argc, char **argv){
 
     func(4, callback);
 
+    FILE *file;
+
+    file = fopen("test.txt", "w+");
+    fprintf(file, "Fprint to write to file\n");
+    fputs("fputs to write to file\n", file);
+    fclose(file);
+
     return 1;
 }
