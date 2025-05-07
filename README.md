@@ -106,6 +106,11 @@ If the language has any way of having a GUI, make a
 4. Same minimum and Maximum
 5. Same Datatype
 6. Same average
+7. Array with negative numbers
+8. Array of length 1
+9. Array with all of the same number
+10. Sorting the same array twice
+11. Shuffling an array and sorting it again
 
 # Basic Data Structures
 1. Linked Lists
