@@ -102,12 +102,19 @@ for i in range(0,n){
 }
 ```
 3. Selection sort
-4. Insertion sort
-5. Mergesort
-6. Quicksort
-7. Heapsort
-8. Counting sort
-9. Tree sort
+```
+n = size(array)
+for i in range(0,n){
+  min_index = min(array, i, n)
+  swap(array, min_index, i)
+}
+```
+5. Insertion sort
+6. Mergesort
+7. Quicksort
+8. Heapsort
+9. Counting sort
+10. Tree sort
 
 **Tests**
 1. Same elements
