@@ -91,13 +91,23 @@ If the language has any way of having a GUI, make a
 # Basic Sorting algorithms
 **Algorithms**
 1. Bubble sort
-2. Selection sort
-3. Insertion sort
-4. Mergesort
-5. Quicksort
-6. Heapsort
-7. Counting sort
-8. Tree sort
+```
+n = size(array)
+for i in range(0,n){
+  for j in range(i,n){
+    if(array[i] < array[j]){
+      swap(array,i,j)
+    }
+  }
+}
+```
+3. Selection sort
+4. Insertion sort
+5. Mergesort
+6. Quicksort
+7. Heapsort
+8. Counting sort
+9. Tree sort
 
 **Tests**
 1. Same elements
