@@ -76,7 +76,7 @@ int* insertion_sort(int array[]){
     int n = SIZE;
     for(int i = 0; i < n; i++){
         for(int j = i; j > 0; j--){
-            if(array[i] < array[j]){
+            if(array[j] < array[j - 1]){
                 swap(array, j - 1, j);
             } else{
                 break;
@@ -85,6 +85,47 @@ int* insertion_sort(int array[]){
     }
     return array;
 }
+
+int* split(int array[], int start, int end) {
+    int size = end - start + 1;
+    int* result = (int*) malloc(sizeof(int) * size);
+    for (int i = 0; i < size; i++) {
+        result[i] = array[start + i];
+    }
+    return result;
+}
+
+int* merge(int arr1[], int arr2[], int len1, int len2) {
+    int* result = (int*) malloc(sizeof(int) * (len1 + len2));
+    int i = 0, j = 0, index = 0;
+    while (i < len1 && j < len2) {
+        if (arr1[i] < arr2[j]) {
+            result[index++] = arr1[i++];
+        } else {
+            result[index++] = arr2[j++];
+        }
+    }
+    while (i < len1) result[index++] = arr1[i++];
+    while (j < len2) result[index++] = arr2[j++];
+    free(arr1);
+    free(arr2);
+    return result;
+}
+
+int* merge_sort(int array[], int n) {
+    if (n < 2) {
+        int* result = (int*) malloc(sizeof(int) * n);
+        for (int i = 0; i < n; i++) result[i] = array[i];
+        return result;
+    }
+    int len1 = (n + 1) / 2;
+    int len2 = n / 2;
+    int* arr1 = split(array, 0, len1 - 1);
+    int* arr2 = split(array, len1, n - 1);
+    return merge(merge_sort(arr1, len1), merge_sort(arr2, len2),len1,len2);
+}
+
+
 
 int main()
 {
@@ -97,5 +138,7 @@ int main()
     print_array(selection_sort(copy_array(numbers)));
     cout << "Result of InsertionSort:";
     print_array(insertion_sort(copy_array(numbers)));
+    cout << "Result of MergeSort:";
+    print_array(merge_sort(copy_array(numbers), SIZE));
     return 0;
 }
