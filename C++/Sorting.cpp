@@ -125,6 +125,46 @@ int* merge_sort(int array[], int n) {
     return merge(merge_sort(arr1, len1), merge_sort(arr2, len2),len1,len2);
 }
 
+int* tree_sort(int array[]){
+    class node{
+        public:
+        int val;
+        node* right;
+        node* left;
+        node(int val_f, node* right_f, node* left_f){
+            val = val_f;
+            right = right_f;
+            left = left_f;
+        }
+        void insert(int val_f){
+            if (val < val_f){
+                if (right != NULL) right->insert(val_f);
+                else right = new node(val_f, NULL, NULL);
+            }else {
+                if (left != NULL) left->insert(val_f);
+                else left = new node(val_f, NULL, NULL);
+            }
+        }
+        // Return slot filled
+        int traverse(int* array, int index){
+            int i = index;
+            if (left != NULL) i = left->traverse(array, i) + 1;
+            array[i] = val;
+            // cout << i << endl;
+            if (right != NULL) i = right->traverse(array, i + 1);
+            return i;
+        }
+    };
+    node* root = new node(array[0], NULL, NULL);
+    int n = SIZE;
+    for(int i = 1; i < n; i++){
+        root->insert(array[i]);
+    }
+    // cout<<endl<<root->val<<" "<<root->right->val<<" "<<root->left->val;
+    root->traverse(array,0);
+    return array;
+}
+
 
 
 int main()
@@ -140,5 +180,7 @@ int main()
     print_array(insertion_sort(copy_array(numbers)));
     cout << "Result of MergeSort:";
     print_array(merge_sort(copy_array(numbers), SIZE));
+    cout << "Result of TreeSort:";
+    print_array(tree_sort(copy_array(numbers)));
     return 0;
 }
