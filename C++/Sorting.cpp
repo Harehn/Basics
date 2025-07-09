@@ -186,7 +186,27 @@ int* quicksort(int* array, int start, int end){
     quicksort(array, pivot + 1, end);
     return array;
 }
+void heapify(int* array, int size, int node){
+    int largest = node;
+    int left = 2 * node + 1; // Left child
+    int right = 2 * node + 2;
+    if (left < size && array[left] > array[largest]) largest = left;
+    if (right < size && array[right] > array[largest]) largest = right;
+    if (largest != node){
+        swap(array, node, largest);
+        heapify(array,size, largest);
+    }
+}
 
+int* heapsort(int* array){
+    int n = SIZE;
+    for (int i = n /2 -1; i >= 0; i--) heapify(array, n, i);
+    for (int i = n - 1; i > 0; i--){
+        swap(array, 0, i);
+        heapify(array, i , 0);
+    }
+    return array;
+}
 
 int main()
 {
@@ -205,5 +225,11 @@ int main()
     print_array(tree_sort(copy_array(numbers)));
     cout << "Result of Quicksort:";
     print_array(quicksort(copy_array(numbers), 0, SIZE - 1));
+    cout << "Result of Heapsort:";
+    print_array(heapsort(copy_array(numbers)));
+    // cout << "Heapify:";
+    // int* arr = copy_array(numbers);
+    // heapify(arr, 0, SIZE);
+    // print_array(arr);
     return 0;
 }
