@@ -165,6 +165,27 @@ int* tree_sort(int array[]){
     return array;
 }
 
+int partition(int* array, int start, int end){
+    if (start >= end) return start;
+    int pivot = start;
+    int left = start + 1;
+    int right = end;
+    while (left <= right){
+        if (array[left] > array[pivot] && array[right] < array[left]) swap(array, left, right);
+        if (array[left] <= array[pivot]) left += 1;
+        if (array[right] >= array[pivot]) right -= 1;
+    }
+    swap(array,pivot, right);
+    return right;
+}
+
+int* quicksort(int* array, int start, int end){
+    if (start >= end) return array;
+    int pivot = partition(array, start, end);
+    quicksort(array, start, pivot - 1);
+    quicksort(array, pivot + 1, end);
+    return array;
+}
 
 
 int main()
@@ -182,5 +203,7 @@ int main()
     print_array(merge_sort(copy_array(numbers), SIZE));
     cout << "Result of TreeSort:";
     print_array(tree_sort(copy_array(numbers)));
+    cout << "Result of Quicksort:";
+    print_array(quicksort(copy_array(numbers), 0, SIZE - 1));
     return 0;
 }
