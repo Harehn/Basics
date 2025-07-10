@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdint.h>
-int main()
+#include <fstream>
+
+//Command line arguments; see 2.0 INPUT/OUTPUT
+int main(int argc, char *argv[]) 
 {
     //----- 1.0 VARIABLES------
     //----- 1.1 Comments ------
@@ -75,6 +78,26 @@ int main()
     
     //----- 1.7 GetVariable Type -------
     std::cout << typeid(place).name();//Outputs i 
+    
+    
+    //------2.0 INPUT/OUTPUT ----------
+    std::cout << "\nEnter your name: ";
+    std::string x;
+    std::cin >> x;
+    std::cout << "\nWelcome " << x << std::endl;
+    std::cout << "You have entered " << argc - 1 << " arguments.";//Taken from main declaration
+    
+    std::ofstream MyFile("message.txt");
+    MyFile << "dQw4w9WgXcQ" << std::endl;
+    MyFile << "We should greet the world with open arms.";
+    MyFile.close();
+    
+    std::string line;
+    std::ifstream MyReadFile("message.txt");
+    while (getline(MyReadFile, line)) {
+      std::cout << std::endl << line;
+    }
+    MyReadFile.close(); 
     
     return 0;
 }
