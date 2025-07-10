@@ -1,0 +1,2 @@
+Fprint to write to file
+fputs to write to file
