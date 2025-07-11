@@ -138,18 +138,30 @@ except TypeError as te:
     print(te)
 
 # 4..0 FUNCTIONS
+def add(x,y):
+    return x + y
 var = "global"
 def f(arg1, arg2="Fixed"):  # can have arguments with fixed values
     global var  # makes it so that the next calls refer to the global scope
     var = "changed"
     return arg1
+def add2(x, func):
+    def new_add(y):
+        return func(x,y)
+    return new_add
+new_func = add2(3, add)
+print("Higher order function test:", new_func(4))
 
-
-# 4..1 LAMBDAS
+# 4..3 lambdas
 f2 = lambda arg1: arg1 + 10  # arg1+10 is the output
 f3 = lambda arg1: arg1 * 2
 f4 = lambda arg1: f3(f3(arg1))
 f5 = lambda ff, arg2: ff(arg2)  # functions as variables
+
+# 4.5 overloading
+# Python does not have overloading by default
+# Use type testing and default arguments to get the desired behaviour
+
 
 # 7..0 RANDOMNESS
 import random
