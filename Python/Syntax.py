@@ -1,55 +1,49 @@
-# Comment with #
-
+# help("keywords")
 # 1..0 VARIABLES
-# Variables are case sensitive
-# snake_case, Uses underscore
-
+# 1..1 Comment with #
+# 1..2 Variable types
 string = "String"
 integer = 123
 float_number = 123.123
-my_favourite_position = "sitting"
+boolean = True
 
-# 1..1 TYPE, TYPE CASTING
-# Some words are reserved for keywords. Type the following in the terminal to get all keywords
-# help("keywords")
+# 1..3 Operations
+integer += 3
+earth_day = (31 - 9) * 100 / 5 - 20
+weeks = 31 / 7  # Float division
+weeks = 31 // 7  # Integer division
+square = 5 ** 2
+string = "This is a " + string
 
-type(3)  # type() gives you the type of the value
-
+# 1..4 type casting
 # type casting/conversion
 int(3.1)
 float("2.3")
 str(33)
+bool(0)
 
 int("10", 2)  # second argument is the base.
 # Output is 2 in this case.
 # Default base is 10
 
-# 1..2 OPERATIONS
-integer += 3
+# 1..5 lists
+thislist = ["apple", "banana", "cherry"]  # Zero indexed
+coordinates = [[0,1], [1,2], [2,3]]
+second_x_coordinates = coordinates[1][0]
 
-# 1..3 REMOVING REFERENCES
-del integer  # removes all prior references to var
-
-# 1..4 TUPLES
+# 1..6 Other structures
+# tuples
 a = 1, 2, "three", (4, 5.0)  # a tuple of 4 values, last value is a tuple of 2 values
 tup1 = (50,)  # This is the appropriate syntax for 1 value in the tuple
 # a[0] = 3  # this is an illegal assignment because tuples are IMMUTABLE
-
 b, c = 13, 22  # multiple initialisation using tuples
-
 b, c = c, b  # switching values
-
-# 1..4.1 OPERATIONS ON TUPLES
 a = a + tup1  # CONCATENATION
 max((1, 2, 3)), min(1, 2, 3)
 a[-1]  # last character
 a[1:3]  # returns tuple from 1 to 3
 
-# 1..5 LISTS
-thislist = ["apple", "banana", "cherry"]
-
-
-# 1..6 DICTIONARIES
+# dictionaries
 thisdict = {
   "brand": "Ford",
   "model": "Mustang",
@@ -58,6 +52,9 @@ thisdict = {
 for key, value in thisdict.items():  # thisdict.keys(), thisdict.values()
     pass
 mydict = thisdict.copy()
+
+# 1..7 get Variable type
+type(3)  # type() gives you the type of the value
 
 # 2..0 PRINTING
 print("COMP" + str(202))  # cannot concatenate string with int
