@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
     int earth_day = (31 - 9) * 100 / 5 - 20;
     float weeks = 31 / 7; //Evaluates to 4 since integer division
     weeks = 31.0 / 7; //Evaluates to 4.4... since 31.0 is a float
+	weeks ++;
+	weeks -= 1;
     std::string name = "Hello" + std::string(" ") + "Nitin";
     // The following will give an error because both of the first 2 operands are string literals
     //std::string name = "Hello" + " " + "Nitin";
