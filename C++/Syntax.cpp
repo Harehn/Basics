@@ -2,6 +2,14 @@
 #include <stdint.h>
 #include <fstream>
 
+int add(int a, int b);
+int add2(int a, int b, int(*func)(int,int));
+void logger(int a);
+void logger(float a);
+void logger(bool a);
+void f(int a = 12);
+
+
 //Command line arguments; see 2.0 INPUT/OUTPUT
 int main(int argc, char *argv[]) 
 {
@@ -149,5 +157,38 @@ int main(int argc, char *argv[])
     int x2 = 2345;
     int maximum_number = x1 > x2? x1:x2;
     
+    //--------- 4.0 FUNCTIONS ---------
+    int total_value = add2(3, 4, add);
+    std::cout <<std::endl << total_value <<std::endl;
+    // Lambda
+    auto logging = [](int values){std::cout << std::endl << values + 1;};
+    logging(total_value);
+    logger(3);
+    logger(2.5f); // float, 2.5 is considered ambiguous, https://stackoverflow.com/questions/34960166/call-of-overloaded-function-is-ambiguous-double-vs-float
+    logger(false);
+    f();
     return 0;
+}
+
+int add(int a, int b){
+    return a + b;
+}
+//Higher Order function
+// Alternative way: https://www.w3schools.com/cpp/cpp_functions_lambda.asp
+int add2(int a, int b, int(*func)(int,int)){
+    return func(a,b);
+}
+//Function overloading
+void logger(int a){
+    std::cout << a;
+}
+void logger(float a){
+    std::cout << a;
+}
+void logger(bool a){
+    std::cout << a;
+}
+//Default arguments
+void f(int a){
+    std::cout << a;
 }
