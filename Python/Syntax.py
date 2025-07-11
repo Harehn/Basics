@@ -162,6 +162,27 @@ f5 = lambda ff, arg2: ff(arg2)  # functions as variables
 # Python does not have overloading by default
 # Use type testing and default arguments to get the desired behaviour
 
+# 5..0 Objects and Classes
+class Obj:
+    def __init__(self, x, y=2):
+        self.x = x
+        self.y = y
+
+class Obj2(Obj):
+    def __init__(self, x, y=2):
+        super().__init__(x,y)
+
+    def __str__(self):
+        return ""
+
+    def __hash__(self):
+        return 1
+
+    def log(self):
+        print(self.x,self.y)
+
+new_obj = Obj2(3)
+new_obj.log()
 
 # 7..0 RANDOMNESS
 import random
@@ -169,19 +190,3 @@ random.seed(a=None)  # seeding
 random.randint(0, 1)  # Return a random integer N such that a <= N <= b.
 random.choice((1, 2, 3))  # Return a random element from the non-empty sequence seq.
 
-
-class Obj:
-    def __init__(self, x, y=2):
-        self.x = x
-        self.y = y
-
-
-class Obj2(Obj):
-    def __init__(self, x, y=2):
-        super(x, y)
-
-    def __str__(self):
-        return ""
-
-    def __hash__(self):
-        return 1
