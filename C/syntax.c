@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <time.h>
-#include <stdlib.h>
+
 
 // 1..0 FUNCTIONS
 int fact(int num){
@@ -27,54 +26,76 @@ struct Books {
 } book;
 
 int main(int argc, char **argv){
-    // 3..0 VARIABLES
+    // 1..0 VARIABLES
+	// Comments
+	/* 
+	* Multiline comment
+	*/
     int integer = 1;
     float real = 1.0;
     char character = 'c';
     char* string = "Hello world";
     char str[] = "";
-    int arr[3] = {1,2,3};
-    struct Books b = {"Trial", "Baby", "Ice Ice", 1234};
-    printf("%d \n", b.book_id);
-    float cast1 = (float) integer;
+	bool daytime = false;
+	// Operation
+	integer = ( integer + 3 ) / (2 * 3);
+	//Type casting
+	float cast1 = (float) integer;
     int cast2 = (int) real;
+	
+	// Array
+    int arr[3] = {1,2,3};
+    
+	// Other structures
+	// Structs
+	struct Books b = {"Trial", "Baby", "Ice Ice", 1234};
+    printf("%d \n", b.book_id);
     /*printf(b.title, "\n");*/
+	
 
-    // 4..0 ARITHMETIC
-    integer = ( integer + 3 ) / (2 * 3);
-
-    // 5..0 PRINTING
-    printf("Hello World \n");
-
-    // 6..0 USER INPUT
+    // 2..0 INPUT/OUTPUT
+    // 2..1 Printing
+	printf("Hello World %d \n", 123);
+    // 2..2 User Input
     printf("Enter a string \n");
     scanf("%s", str);
     printf("%s \n", str);
-
-    // 7..0 CMD INPUT
+    // 2..3 Console Input
     if(argc>1){
         printf(argv[1]);
     }
+	// 2..4 File IO
+	FILE *file;
+    file = fopen("test.txt", "w+");
+    fprintf(file, "Fprint to write to file\n");
+    fputs("fputs to write to file\n", file);
+    fclose(file);
 
-    // 8..0 LOGIC
-    if (integer == 1){
-        integer++;
-    }
-
-    for (int i=0; i<10; i++){
+    // 3..0 LOGIC
+    // 3..1 For loop
+	for (int i=0; i<10; i++){
         printf("%d! is %d \n", i, fact(i));
     }
-
+	// 3..2 While loop
     int counter = 10;
     while(counter > 0){
         counter--;
     }
+	// 3..3 If else
+	if (integer == 1){
+        integer++;
+    }
+	// Combination
+	int odd_numbers = 0;
     for (int i=0; i<10; i++){
         if(i%2 ==0){
-
+			odd_numbers ++;
         }
     }
-
+	
+	int num = 3;
+	num = num<2?1:num;
+	
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand();      // Returns a pseudo-random integer between 0 and RAND_MAX.
     printf("%d", r);
@@ -86,13 +107,6 @@ int main(int argc, char **argv){
     printf("\n%p", ptr);
 
     func(4, callback);
-
-    FILE *file;
-
-    file = fopen("test.txt", "w+");
-    fprintf(file, "Fprint to write to file\n");
-    fputs("fputs to write to file\n", file);
-    fclose(file);
 
     return 1;
 }
