@@ -90,8 +90,48 @@ try:
     in_file.close()
 except:
     pass
+# Reading files with context manager
+with open("example.txt", 'r+') as infile:
+    print(infile.readlines())
 
-# 3..0 Try Catch
+# 3..0 LOGIC FLOW
+# 3..1 for loop
+total = 0
+for i in range(12): # 0,..., 11  ||  12 iterations
+    total += i
+var = 1
+# for each
+for x in (1, 2, 3):
+    var += 1
+var = [x/2 for x in (1, 2, 3)]
+
+# 3..2 While loop
+while False:
+    pass
+
+# 3..3 if else
+if 1 in (1, 2, 3):
+    var = 1
+
+# 3..4 Switch Case
+# The following was introduced in python 3.10
+argument = 1
+match argument:
+    case 0:
+        print("zero")
+    case 1:
+        print("one")
+    case 2:
+        print("two")
+    case default:
+        print("something")
+
+# 3..5 Ternary operator
+var += 3 if 3 in (1, 2, 3) else 0
+var = (2, 3) if 3 in (1, 2, 3) else 0  # Workaround
+var = [x/2 for x in (1, 2, 3) if (x+1) in (1, 2, 3)] # Combinations
+
+# 3..6 Try Catch
 try:
     pass
 except TypeError as te:
@@ -99,8 +139,6 @@ except TypeError as te:
 
 # 4..0 FUNCTIONS
 var = "global"
-
-
 def f(arg1, arg2="Fixed"):  # can have arguments with fixed values
     global var  # makes it so that the next calls refer to the global scope
     var = "changed"
@@ -112,26 +150,6 @@ f2 = lambda arg1: arg1 + 10  # arg1+10 is the output
 f3 = lambda arg1: arg1 * 2
 f4 = lambda arg1: f3(f3(arg1))
 f5 = lambda ff, arg2: ff(arg2)  # functions as variables
-
-# 5..0 LOGIC
-# 5..1 IF ELSE
-if 1 in (1, 2, 3):
-    var = 1
-var += 3 if 3 in (1, 2, 3) else 0
-var = (2, 3) if 3 in (1, 2, 3) else 0  # Workaround
-
-# 5..2 FOR LOOP
-var = 1
-for x in (1, 2, 3):
-    var += 1
-var = [x/2 for x in (1, 2, 3)]
-
-# 5..3 While LOOP
-while False:
-    pass
-
-# 5..4 COMBINATION
-var = [x/2 for x in (1, 2, 3) if (x+1) in (1, 2, 3)]
 
 # 7..0 RANDOMNESS
 import random
