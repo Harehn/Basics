@@ -167,6 +167,29 @@ int main(int argc, char *argv[])
     logger(2.5f); // float, 2.5 is considered ambiguous, https://stackoverflow.com/questions/34960166/call-of-overloaded-function-is-ambiguous-double-vs-float
     logger(false);
     f();
+    
+    // Base class
+    class Person {
+      public:
+        std::string name = "Vic";
+        void greet() {
+          std::cout << "\nHello, my name is " << name <<std::endl;
+        }
+    };
+    
+    // Derived class
+    class Noble: public Person {
+      public:
+        std::string name = "Victoria";
+        void greet() {
+          std::cout << "\nGreetings, allow me to introduce myself. " << name << " at your service.\n";
+        }
+    };
+    Person passerbyA;
+    passerbyA.greet();
+    
+    Noble posh_guy;
+    posh_guy.greet();
     return 0;
 }
 
