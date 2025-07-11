@@ -56,14 +56,40 @@ mydict = thisdict.copy()
 # 1..7 get Variable type
 type(3)  # type() gives you the type of the value
 
-# 2..0 PRINTING
-print("COMP" + str(202))  # cannot concatenate string with int
+# 2..0 INPUT/OUTPUT
+# 2..1 printing
+print("Python" + str(101))  # cannot concatenate string with int
 print("You can write over multiple lines \
 using a backlash \
 like this")
-print("My favourite number is", 5, "!", sep=",")  # default separator is ","
-print("llllll", end="")  # So that there is no end line character after the print
+print("My", "favourite number", "is", 4, "!")  # default separator is " "
+print("My", "favourite number", "is", 4, "!", sep=",")
+print("Hello", end="")  # So that there is no end line character after the print
+print()
 
+# 2..2 User Input
+try:
+    x = input("Please enter a number:")
+    someVar = int(x)
+except (TypeError, ValueError) as e:
+    print(e)
+
+# 2..3 Console arguments
+import sys
+print ('argument list', sys.argv)
+# first_argument = sys.argv[1]
+
+# 2..4 File IO
+try:
+    filename = "example.txt"
+    out_file = open(filename, 'w+')
+    out_file.write("Mercy is a skill this world could use more of.\n")
+    out_file.close()
+    in_file = open(filename, 'r+')
+    lines = in_file.readlines()
+    in_file.close()
+except:
+    pass
 
 # 3..0 Try Catch
 try:
@@ -107,29 +133,11 @@ while False:
 # 5..4 COMBINATION
 var = [x/2 for x in (1, 2, 3) if (x+1) in (1, 2, 3)]
 
-# 6..0 INPUT
-x = input("Please enter something")
-try:
-    someVar = int(input())
-except (TypeError, ValueError) as e:
-    print(e)
-
 # 7..0 RANDOMNESS
 import random
 random.seed(a=None)  # seeding
 random.randint(0, 1)  # Return a random integer N such that a <= N <= b.
 random.choice((1, 2, 3))  # Return a random element from the non-empty sequence seq.
-
-# 8..0 FILE IO
-try:
-    in_file = open("Filename", 'r+')
-    lines = in_file.readlines()
-    in_file.close()
-    out_file = open("Filename", 'w+')
-    out_file.write("Refer to .... for formatting rules\n")
-    out_file.close()
-except:
-    pass
 
 
 class Obj:
