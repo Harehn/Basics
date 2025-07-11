@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     
     //------1.6 Other strutures -----
     int place = 12;
-    int* ptr = &place;
+    int* ptr = &place;//Pointer
     int& ref = place;//points to place, any changes to ref will change place
     struct person{
         std::string name;
@@ -98,6 +98,56 @@ int main(int argc, char *argv[])
       std::cout << std::endl << line;
     }
     MyReadFile.close(); 
+    
+    //------3.0 LOGIC ----------
+    int even = 0;
+    int odd = 0;
+    //for loop
+    for (int i = 0; i < 25; i++){
+        if (i % 2 == 0) even += 1;
+        else{
+            odd ++;
+        }
+    }
+    int total = 0;
+    int numbers[5] = {1, 2, 3, 4, 5};
+    //for each loop
+    for (int i : numbers) {
+        total += i;
+    }
+    //while loop
+    while (total >0){
+        total -= 10;
+    }
+    //switch case
+    int day = 6;
+    switch(day){
+        case 5:
+            std::cout<<"\nIt is Saturday\n";
+            break;
+        case 6:
+            std::cout<<"\nIt is Sunday\n";
+            break;
+        default:
+            std::cout<<"\nIt is not yet the weekend :/\n";
+    }
+    //try catch
+    try {
+        throw 404;
+    }
+    catch (int errorCode) {
+        std::cout << "Error occurred: " << errorCode;
+    }
+    try {
+        int x = 123/12;
+    }
+    catch (...) {
+        std::cout << "Cannot divide by zero!";
+    }
+    //ternary operator
+    int x1 = 1234;
+    int x2 = 2345;
+    int maximum_number = x1 > x2? x1:x2;
     
     return 0;
 }
