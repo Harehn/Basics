@@ -3,11 +3,12 @@
 #include <time.h>
 
 
-// 1..0 FUNCTIONS
+// 4..0 FUNCTIONS
 int fact(int num){
     return num<2?1:num*fact(num-1);
 }
 
+// 4..2 Higher Order Functions
 void func(int nb, void (*f)(int)) {
     int i;
     for (i = 0; i < nb; i++) f(i);
@@ -17,13 +18,14 @@ void callback(int v) {
     printf("%d\n", v);
 }
 
-// 2..0 OBJECTS
+// 1.. Structs
 struct Books {
    char  title[50];
    char  author[50];
    char  subject[100];
    int   book_id;
 } book;
+
 
 int main(int argc, char **argv){
     // 1..0 VARIABLES
@@ -36,7 +38,7 @@ int main(int argc, char **argv){
     char character = 'c';
     char* string = "Hello world";
     char str[] = "";
-	bool daytime = false;
+	// bool daytime = false; No boolean in C
 	// Operation
 	integer = ( integer + 3 ) / (2 * 3);
 	//Type casting
@@ -51,7 +53,28 @@ int main(int argc, char **argv){
 	struct Books b = {"Trial", "Baby", "Ice Ice", 1234};
     printf("%d \n", b.book_id);
     /*printf(b.title, "\n");*/
+	short small = 1;
+	long bigger = 345678;
+	uint8_t positive = 12;
+	int* ptr = &integer;
 	
+	int extra_int = 1;
+    int* ptr = (int*) malloc(sizeof(int));
+    printf("\n%p", ptr);
+    free(ptr);
+    printf("\n%p", ptr);
+
+	enum level{LOW, MEDIUM, HIGH};//Evaluates to 0, 1, 2
+    enum places{
+        START = 12,
+        START2, // Now 13
+        END // Now 14
+    };
+	union place_in_race{
+        int position;
+        bool error;
+    }good_place;
+	// Cannot get variable types in C without compiler extensions
 
     // 2..0 INPUT/OUTPUT
     // 2..1 Printing
@@ -93,20 +116,31 @@ int main(int argc, char **argv){
         }
     }
 	
+    // Switch Case
+	int day = 6;
+    switch(day){
+        case 5:
+            printf("\nIt is Saturday\n");
+            break;
+        case 6:
+            printf("\nIt is Sunday\n");
+            break;
+        default:
+            printf("\nIt is not yet the weekend :/\n");
+    }
+	
+	// Ternary operator
 	int num = 3;
 	num = num<2?1:num;
+	
+	// 4..0 Function
+	func(4, callback);
+	// No lambdas , no default arguments, no overloading functions in C
+	
 	
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand();      // Returns a pseudo-random integer between 0 and RAND_MAX.
     printf("%d", r);
-
-    int extra_int = 1;
-    int* ptr = (int*) malloc(sizeof(int));
-    printf("\n%p", ptr);
-    free(ptr);
-    printf("\n%p", ptr);
-
-    func(4, callback);
 
     return 1;
 }
