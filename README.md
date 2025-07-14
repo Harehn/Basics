@@ -13,7 +13,8 @@
 ### Installation
 ### Properties
 
-# Variables
+# Syntax
+## Variables
 1. Comments
 2. Variable types (Pointers)
 	1. int
@@ -34,14 +35,14 @@
 	4. Short, long
 7. Get Variable type
 
-# IO
+## IO
 1. Printing
 2. Get User input (Command line arguments)
 3. Get console input 
 4. File input
 5. File output
 
-# Logic Flow
+## Logic Flow
 1. For loop
 	1. For else
 	2. For each
@@ -51,20 +52,20 @@
 5. Ternary Operator
 6. Try Catch
 7. Scope : Pass by reference or value
-# Functions
+## Functions
 1. Normal definition
 2. Higher Order Functions
 3. Lambdas
 4. Default values
 5. Overloading functions
 
-# OOP
+## OOP
 1. Classes
 2. Objects
 3. Methods
 4. Inheritance and polymorphism
 
-# Multiple files
+## Multiple files
 1. How to break project into multiple files
 
 # Language specific showcase
@@ -81,16 +82,15 @@
 Weather App
 *Goal:* Send an api request to a weather server and display the information received
 *Expected Result:* The current temperature in Montreal is ---. The weather is ---
-# Snake Game
+## Snake Game
 If the language has any way of having a GUI, make a 
 
-# Pseudo DB
+## Pseudo DB
 
-# Tests 
+## Tests 
 
 # Basic Sorting algorithms
-**Algorithms**
-1. Bubble sort
+### 1. Bubble sort
 ```
 n = size(array)
 for i in range(0,n){
@@ -101,7 +101,7 @@ for i in range(0,n){
   }
 }
 ```
-3. Selection sort
+### 2. Selection sort
 ```
 n = size(array)
 for i in range(0,n){
@@ -109,12 +109,11 @@ for i in range(0,n){
   swap(array, min_index, i)
 }
 ```
-5. Insertion sort
-6. Mergesort
-7. Quicksort
-8. Heapsort
-9. Counting sort
-10. Tree sort
+### 3. Insertion sort
+### 4. Mergesort
+### 5. Quicksort
+### 6. Heapsort
+### 7. Tree sort
 
 **Tests**
 1. Same elements
