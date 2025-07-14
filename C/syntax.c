@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <stdint.h>
 
 // 4..0 FUNCTIONS
 int fact(int num){
@@ -59,7 +59,7 @@ int main(int argc, char **argv){
 	int* ptr = &integer;
 	
 	int extra_int = 1;
-    int* ptr = (int*) malloc(sizeof(int));
+    ptr = (int*) malloc(sizeof(int));
     printf("\n%p", ptr);
     free(ptr);
     printf("\n%p", ptr);
@@ -72,7 +72,7 @@ int main(int argc, char **argv){
     };
 	union place_in_race{
         int position;
-        bool error;
+        char error;
     }good_place;
 	// Cannot get variable types in C without compiler extensions
 
@@ -85,7 +85,7 @@ int main(int argc, char **argv){
     printf("%s \n", str);
     // 2..3 Console Input
     if(argc>1){
-        printf(argv[1]);
+        printf("%s",argv[1]);
     }
 	// 2..4 File IO
 	FILE *file;
@@ -132,11 +132,9 @@ int main(int argc, char **argv){
 	// Ternary operator
 	int num = 3;
 	num = num<2?1:num;
-	
 	// 4..0 Function
-	func(4, callback);
+	func(4, callback); // Stack smashing in this situation but not when done separately
 	// No lambdas , no default arguments, no overloading functions in C
-	
 	
     srand(time(NULL));   // Initialization, should only be called once.
     int r = rand();      // Returns a pseudo-random integer between 0 and RAND_MAX.
