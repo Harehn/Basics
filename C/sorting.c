@@ -1,37 +1,51 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
-int range = 100;
+#define SIZE 25
+#define RANGE 10000
 
-void print_array(int arr[], int size){
-    for(int i = 0; i < size; i++){
-        printf("%d, ", arr[i] % range);
+int numbers[SIZE];
+
+void init_number(){
+    srand(time(0));
+    for(int index = 0; index < SIZE; index++){
+        numbers[index] = rand() % (RANGE + 1);
     }
 }
-
-void random_arr(int arr[], int size){
-    srand(time(NULL));
-    for(int i = 0; i < size; i++){
-        arr[i] = rand();
-    }
+void swap(int array[], int i, int j){
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
 }
 
-void swap(int arr[], int pos1, int pos2){
-    int temp = arr[pos1];
-    arr[pos1] = arr[pos2];
-    arr[pos2] = temp;
+int get_min(int array[], int i, int j){
+    int n = SIZE;
+    int min_value = array[i];
+    int min_index = i;
+    for(int index = i; index < n; index++){
+        if (min_value > array[index]){
+            min_value = array[index];
+            min_index = index;
+        }
+    }
+    return min_index;
+}
+
+void print_array(int* array){
+    printf("\n[");
+    for(int index = 0; index < SIZE; index++){
+        printf("%d", array[index]);
+        if (index == SIZE - 1) break;
+        printf(", ");
+    }
+    printf("]\n");
 }
 
 int main()
 {
-    int numbers[12];
-    int n = sizeof(numbers)/sizeof(numbers[0]);
-    random_arr(numbers, n);
-    print_array(numbers, n);
-    
-    swap(numbers, 0, 1);
-    printf("\n");
-    print_array(numbers, n);
+    init_number();
+    printf("Numbers: ");
+    print_array(numbers);
     return 0;
 }
