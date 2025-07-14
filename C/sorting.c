@@ -177,28 +177,38 @@ struct Node {
 
 void insert(struct Node* curr, int val_f){
     if (curr->val < val_f){
-        if (curr->right != NULL) insert(curr->right, val_f);
+        if (curr->right) insert(curr->right, val_f);
         else {
-            struct Node new_node = {val_f, NULL, NULL};
-            curr->right = &new_node;
+            struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+            new_node->val = val_f;
+            new_node->right = NULL;
+            new_node->left = NULL;
+            curr->right = new_node;
         }
     }else {
-        if (curr->left != NULL) insert(curr->left, val_f);
+        if (curr->left) insert(curr->left, val_f);
         else {
-            struct Node new_node = {val_f, NULL, NULL};
-            curr->left = &new_node;
+            struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+            new_node->val = val_f;
+            new_node->right = NULL;
+            new_node->left = NULL;
+            curr->left = new_node;
         }
     }
 }
 // Return slot filled
 int traverse(struct Node* curr, int* array, int index){
     int i = index;
-    if (curr->left != NULL) {i = traverse(curr->left, array, i) + 1;}
-    // array[i] = curr->val;
-    // if (index < SIZE) return index;
-    printf("%d\n", array[i]);
-    if (curr->right != NULL) {i = traverse(curr->right, array, i + 1);}
+    if (curr->left) {i = traverse(curr->left, array, i) + 1;}
+    array[i] = curr->val;
+    if (curr->right) {i = traverse(curr->right, array, i + 1);}
     return i;
+}
+
+void printTree(struct Node* curr){
+    if (curr->left) printTree(curr->left);
+    printf("%d\n", curr->val);
+    if (curr->right) printTree(curr->right);
 }
 
 int* tree_sort(int array[]){
@@ -207,7 +217,6 @@ int* tree_sort(int array[]){
     for(int i = 1; i < n; i++){
         insert(&root, array[i]);
     }
-    // printf("%d", (&root)->left->right->left->val);
     traverse(&root, array, 0);
     return array;
 }
