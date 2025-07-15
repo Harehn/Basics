@@ -2,25 +2,41 @@ package Sorting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import structures.Tree;
+//import structures.Tree;
 
 public class Sort {
-  public static int countSortMaximum = 100;
-  
-  public static int[] treeSort(int[] arr) {
-    Tree t = new Tree();
-    for (int i:arr) {
-      t.insertInOrder(i);
-    }
-    ArrayList<Integer> complexArr = t.traverse();
-    int[] simpleArr = new int[complexArr.size()];
-    int index = 0;
-    for(Integer i: complexArr) {
-      simpleArr[index] = i.intValue();
-      index++;
-    }
-    return simpleArr;
+  public static class Tree{
+	  public int val;
+	  public Tree left;
+	  public Tree right;
+	  public Tree(int val_f) {this.val=val_f;this.left=null;this.right=null;}
+	  public void insert(int val_f) {
+		  if (this.val < val_f) {
+			  if (this.right != null) this.right.insert(val_f);
+			  else this.right = new Tree(val_f);
+		  }else {
+			  if (this.left != null) this.left.insert(val_f);
+			  else this.left = new Tree(val_f);
+		  }
+	  }
+	  public int traverse(int[] arr, int index) {
+		  int i = index;
+          if (this.left != null) i = this.left.traverse(arr, i) + 1;
+          arr[i] = val;
+          if (this.right != null) i = this.right.traverse(arr, i + 1);
+          return i;
+	  }
   }
+  public static int[] treeSort(int[] arr) {
+    Tree t = null;
+    for (int i:arr) {
+    	if (t == null) t = new Tree(i);
+    	else t.insert(i);
+    }
+    int[] new_arr = new int[20];
+    t.traverse(new_arr, 0);
+    return new_arr;
+}
   
   public static int[] bubbleSort(int[] arr0) {
     int[] arr = cloneList(arr0);
@@ -80,7 +96,7 @@ public class Sort {
     return arr;    
   }
   
-  public static int[] quicksort(int[] arr) {
+  public static int[] quickSort(int[] arr) {
     if(arr.length < 2) {
       return arr;
     }
@@ -88,7 +104,7 @@ public class Sort {
     int[] lessList  = arrs[0];
     int[] pivotList  = arrs[1];
     int[] moreList  = arrs[2];
-    return join(new int[][] {quicksort(lessList), pivotList, quicksort(moreList)});
+    return join(new int[][] {quickSort(lessList), pivotList, quickSort(moreList)});
   }
   
   public static int[][] partition(int[] arr){
@@ -175,28 +191,11 @@ public class Sort {
     return result;
   }
   
-  
-  public static int[] countSort(int[] arr0) {
-    int[] counts = new int[countSortMaximum];
-    int[] sortedList =new int[arr0.length];
-    for(int i: arr0) {
-      counts[i]++;
-    }
-    for(int i = 1; i< counts.length; i++) {
-      counts[i]+=counts[i-1];
-    }
-    for(int i:arr0) {
-      sortedList[counts[i]-1] = i;
-      counts[i]--;
-    }
-    return sortedList;
-  }
-  
   public static int[] makeList(int n) {
     Random myRandom=new Random();
     int[] randomList = new int[n];
     for(int i = 0; i < n; i++){
-       randomList[i] = myRandom.nextInt(100);
+       randomList[i] = myRandom.nextInt(10000);
     }
     return randomList;
   }
@@ -208,4 +207,50 @@ public class Sort {
     }
     return arr;
   }
+  
+  public static String listToString(int[] arr) {
+	  String to_return = "[";
+	  for (int num: arr) {
+		  to_return += num + ", ";
+	  }
+	  return to_return+"]";
+  }
+  
+  public static void heapify(int[] arr, int size, int index) {
+	  int largest = index;
+	  int left = 2 * index + 1;
+	  int right = 2 * index + 2;
+	  if (left < size && arr[left] > arr[largest]) largest = left;
+	  if (right < size && arr[right] > arr[largest]) largest = right;
+	  if (largest != index) {
+		  int temp = arr[index];
+		  arr[index] = arr[largest];
+		  arr[largest] = temp;
+		  heapify(arr, size, largest);
+	  }
+  }
+  
+  public static int[] heapSort(int[] arr) {
+	  for(int i = arr.length/2 - 1; i>=0; i--) heapify(arr, arr.length, i);
+	  for(int i = arr.length - 1; i > 0; i--) {
+		  int temp = arr[0];
+		  arr[0] = arr[i];
+		  arr[i] = temp;
+		  heapify(arr, i, 0);
+	  }
+	  return arr;
+  }
+  
+  public static void main(String[] args) {
+	int[] numbers = makeList(20);
+	System.out.println("Original array: " + listToString(numbers));
+	System.out.println("BubbleSort result: " + listToString(bubbleSort(cloneList(numbers))));
+	System.out.println("SelectionSort result: " + listToString(selectionSort(cloneList(numbers))));
+	System.out.println("InsertionSort result: " + listToString(insertionSort(cloneList(numbers))));
+	System.out.println("MergeSort result: " + listToString(mergeSort(cloneList(numbers))));
+	System.out.println("QuickSort result: " + listToString(quickSort(cloneList(numbers))));
+	System.out.println("TreeSort result: " + listToString(treeSort(cloneList(numbers))));
+	System.out.println("HeapSort result: " + listToString(heapSort(cloneList(numbers))));
+  }
+  
 }
