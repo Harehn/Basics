@@ -28,7 +28,7 @@ a = Number(a_string)
 
 //Other Variable types
 var tuples_using_arrays = ["int", 12, 12.3];
-var arr1 = [2,3,5,8];
+var arr = [2,3,5,8];
 
 arr.toString();
 arr.join(",");
@@ -44,7 +44,25 @@ arr.reverse();
 arr.sort(function(a, b){return a > b })
 
 //2..0 INPUT/OUTPUT
+console.log(a);             // write to the browser console
+// document.write(a);          // write to the HTML
+// alert(a);                   // output in an alert box
+// confirm("Really?");         // yes/no dialog, returns true/false depending on user click
+// prompt("Your age?","0");    // input dialog. Second argument i
 
+//Node.js code
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+readline.question(`What's your name?\n`, (name) => {
+  console.log(`Hi ${name}!`)
+  readline.close()
+})
+
+var fs = require('fs');
+var readMe = fs.readFileSync('readMe.txt', 'utf8');
+console.log(readMe);
 
 //3..0 LOGIC FLOW
 //for loop
@@ -66,20 +84,20 @@ if(a_string == String(a)){
   a = Number(a_string);
 }
 
-for (var i = 0; i < arr.length; i++) {
-  if(i % 2 == 0){
-    sum += arr[i];
-  } else{
-    sum -= arr[i];
-  }
+var is_even = 12 % 2 == 0? "even": "odd";
 
+// Switch Case
+var day = 6;
+switch(day){
+	case 5:
+		console.log("\nIt is Saturday\n");
+		break;
+	case 6:
+		console.log("\nIt is Sunday\n");
+		break;
+	default:
+		console.log("\nIt is not yet the weekend :/\n");
 }
-
-console.log(a);             // write to the browser console
-// document.write(a);          // write to the HTML
-// alert(a);                   // output in an alert box
-// confirm("Really?");         // yes/no dialog, returns true/false depending on user click
-// prompt("Your age?","0");    // input dialog. Second argument i
 
 try{
   throw "No actual error here. Move on.";
@@ -90,8 +108,12 @@ try{
 }
 
 //4..0 Function
-function addNumbers(a, b) {
+// Default arguments
+function addNumbers(a, b=12) {
     return a + b; ;
+}
+function addNumbers(a) {
+    return a + 123;
 }
 
 // Higher Order Function
@@ -102,23 +124,10 @@ function execute(action){
 var lambda = function(){console.log("Higher Order Functions")};
 execute(lambda);
 
-//Node.js code
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
-readline.question(`What's your name?`, (name) => {
-  console.log(`Hi ${name}!`)
-  readline.close()
-})
 
 for (var i = 0; i < 5; i++) {
   console.log(Math.random())
 }
-
-var fs = require('fs');
-var readMe = fs.readFileSync('readMe.txt', 'utf8');
-console.log(readMe);
 
 //Standalone object
 var user = {
@@ -139,6 +148,11 @@ class User{
   }
   getName(){
     return this.name;
+  }
+}
+class VIP extends User{
+  constructor(name, email){
+    super(name,email)
   }
 }
 console.log(new User("John", "Doe@gmail.com").getName());
