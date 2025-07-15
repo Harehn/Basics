@@ -13,9 +13,56 @@ def selection_sort(arr):
         arr.remove(min_arr)
     return new_arr
 
+def insertion_sort(arr):
+    new_arr = []
+    for el in arr:
+        index = 0
+        for i in range(len(new_arr)):
+            if el > new_arr[i]:
+                index += 1
+        new_arr.insert(index, el)
+    return new_arr
+
+def merge_sort(arr):
+    def merge(arr1, arr2, result=[]):
+        if not arr1:
+            result.extend(arr2)
+            return result
+        if not arr2:
+            result.extend(arr1)
+            return result
+        if arr1[0] > arr2[0]:
+            result.append(arr2[0])
+            return merge(arr1, arr2[1:], result)
+        else:
+            result.append(arr1[0])
+            return merge(arr1[1:], arr2, result)
+    def split(arr1):
+        length = len(arr1)
+        return [arr1[:length//2], arr1[length//2:]]
+    # return merge(*split(arr))
+    if len(arr) == 1:
+        return arr
+    arr1, arr2 = split(arr)
+    return merge(merge_sort(arr1), merge_sort(arr2))
+
+def quick_sort(arr):
+    if len(arr) < 2:
+        return arr
+    def partition(arr1):
+        pivot = arr1[0]
+        return [x for x in arr1 if x < pivot],pivot, [x for x in arr1 if x > pivot]
+    arr1, pivot, arr2 = partition(arr)
+    # return arr1, arr2
+    return [*quick_sort(arr1), pivot, *quick_sort(arr2)]
+
+
 import random
 length = 20
 RANGE = 10_000
 numbers = [random.randint(1, RANGE) for i in range(length)]
-print(bubble_sort(numbers.copy()))
-print(selection_sort(numbers.copy()))
+print("Result of bubble sort: ", bubble_sort(numbers.copy()))
+print("Result of selection sort: ", selection_sort(numbers.copy()))
+print("Result of insertion sort: ", insertion_sort(numbers.copy()))
+print("Result of merge sort: ", merge_sort(numbers.copy()))
+print("Result of quick sort: ", quick_sort(numbers.copy()))
