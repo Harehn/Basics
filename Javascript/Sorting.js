@@ -201,7 +201,7 @@ function treesort(arr){
   function traverse(node){
     //left, root, right
     if(! valueExists(node)){
-      return arr
+      return result
     }
     initializeleft(node);
     traverse(node.left)
@@ -209,7 +209,7 @@ function treesort(arr){
     // console.log(node.value)
     initializeright(node);
     traverse(node.right)
-    return arr
+    return result
   }
 
   return traverse(getTree(arr), result)
@@ -219,8 +219,9 @@ arr = makeList(12);
 console.log("bubblesort", bubbleSort(arr));
 console.log("selectionSort", selectionSort(arr));
 console.log("insertionSort", insertionSort(arr));
-console.log("Countsort", countsort(arr));
-console.log("gnomesort", gnomesort(arr));
+//console.log("Countsort", countsort(arr));
+//console.log("gnomesort", gnomesort(arr));
 console.log("mergesort", mergesort(arr));
 console.log("quicksort", quicksort(arr));
 console.log("treesort", treesort(arr));
+console.log(arr);
