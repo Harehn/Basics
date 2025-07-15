@@ -56,13 +56,47 @@ def quick_sort(arr):
     # return arr1, arr2
     return [*quick_sort(arr1), pivot, *quick_sort(arr2)]
 
+def tree_sort(arr):
+    class Node:
+        def __init__(self, val_f):
+            self.val = val_f
+            self.right = None
+            self.left = None
+        def insert(self, val_f):
+            if self.val < val_f:
+                if self.right:
+                    self.right.insert(val_f)
+                else:
+                    self.right = Node(val_f)
+            else:
+                if self.left:
+                    self.left.insert(val_f)
+                else:
+                    self.left = Node(val_f)
+        def traverse(self, arr):
+            if self.left:
+                self.left.traverse(arr)
+            arr.append(self.val)
+            if self.right:
+                self.right.traverse(arr)
+            # return arr
+    root = Node(arr[0])
+    new_arr = []
+    for num in arr[1:]:
+        root.insert(num)
+    root.traverse(new_arr)
+    return new_arr
+
+
 
 import random
 length = 20
 RANGE = 10_000
 numbers = [random.randint(1, RANGE) for i in range(length)]
+print("Numbers:", numbers)
 print("Result of bubble sort: ", bubble_sort(numbers.copy()))
 print("Result of selection sort: ", selection_sort(numbers.copy()))
 print("Result of insertion sort: ", insertion_sort(numbers.copy()))
 print("Result of merge sort: ", merge_sort(numbers.copy()))
 print("Result of quick sort: ", quick_sort(numbers.copy()))
+print("Result of tree sort: ", tree_sort(numbers.copy()))
