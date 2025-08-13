@@ -101,3 +101,5 @@ for i in range(0,n){
 6. Heap
 7. Graph
 8. Hash map
+
+# [Future Plans](https://github.com/Harehn/Basics/blob/master/Plans.md)
